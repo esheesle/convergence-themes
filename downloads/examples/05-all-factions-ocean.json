@@ -1,0 +1,72 @@
+// Example 5: every faction at once, as undersea civilisations.
+// Shows region names ("group"), resources, colours, blurbs and art styles for all 17 factions.
+// Ship, weapon and ability names are left out, so they keep their built-in names.
+// The AI prompts (AI_PROMPTS.md, or the AI prompt builder on the website) can fill those in too.
+{
+  "format": "convergence-theme",
+  "id": "example-abyssal-tides",
+  "name": "Example: Abyssal Tides",
+  "author": "Convergence Themed examples",
+  "description": "All seventeen factions reimagined as deep-sea powers across three ocean depths.",
+  "subtitle": "Seventeen fleets. Three depths. One tide.",
+
+  "factions": {
+    // --- Region 1 -----------------------------------------------------------------------------------
+    "concord":   { "title": "Coral Accord", "short": "Accord", "group": "The Sunlit Shelf", "resourceA": "Pearl", "resourceB": "Coralite", "color": "5FE0D0",
+                   "blurb": "Balanced reef fleets with strong bubble wards, current lances and homing darts. Excellent field repairs.",
+                   "shipStyle": { "form": "MANTA", "organic": true, "plating": "RIBS", "hull": "E8D8C4", "panel": "D2B89A", "dark": "6E5A48", "light": "FFFFFF", "engine": "5FE0D0", "glow": "5FE0D0" },
+                   "stationStyle": { "shape": "ORGANIC", "hull": "E8D8C4", "panel": "F08A7A", "dark": "6E5A48", "glow": "5FE0D0" } },
+    "accretion": { "title": "The Barnacle Mass", "short": "Mass", "group": "The Sunlit Shelf", "resourceA": "Pearl", "resourceB": "Wreck Iron", "color": "C8A060",
+                   "blurb": "A crusted colony that grows over what it defeats. Slow, massive and self-healing, with grinding beams and the power to absorb crippled ships.",
+                   "shipStyle": { "hull": "5C5448", "panel": "7A6E5C", "dark": "2A2620", "glow": "C8A060" } },
+    "shroud":    { "title": "Ink Dominion", "short": "Ink", "group": "The Sunlit Shelf", "resourceA": "Pearl", "resourceB": "Blackshell", "color": "9A70FF",
+                   "blurb": "Almost every ship can hide in an ink cloud. Venom torpedoes, keen-sensed scouts and a flagship whose toxin bloom kills whole crews.",
+                   "shipStyle": { "organic": true, "hull": "2E2448", "panel": "48386E", "dark": "140F22", "glow": "B090FF" } },
+    "vardek":    { "title": "Shark Clans", "short": "Sharks", "group": "The Sunlit Shelf", "resourceA": "Pearl", "resourceB": "Blackshell", "color": "FF5A4A",
+                   "blurb": "Aggressive, tough and cheap. Hidden raiders, heavy jaws and boarding swarms.",
+                   "shipStyle": { "form": "BLADE", "wings": "FINS", "hull": "6A7480", "panel": "8A949E", "dark": "30363C" } },
+    "saurak":    { "title": "Crab Throne", "short": "Crabs", "group": "The Sunlit Shelf", "resourceA": "Pearl", "resourceB": "Blackshell", "color": "FF8A3A",
+                   "blurb": "Heavily armoured, slow brawlers with acid spitters and vicious boarding parties.",
+                   "shipStyle": { "hull": "A0482E", "panel": "C2603C", "dark": "4E2216", "glow": "FFB060" } },
+
+    // --- Region 2 -----------------------------------------------------------------------------------
+    "helios":    { "title": "Diving Bell Compact", "short": "Divers", "group": "The Twilight Zone", "resourceA": "Ambergris", "resourceB": "Cobalt Nodule", "color": "FFD060",
+                   "blurb": "Brass harpoon guns, depth charges and minisub wings, upgraded with salvaged shields and blast charges. Pressure jumps.",
+                   "shipStyle": { "hull": "B08D57", "panel": "C8A46A", "dark": "4A3A22", "light": "FFE6A8" } },
+    "luminar":   { "title": "Lantern Choir", "short": "Lanterns", "group": "The Twilight Zone", "resourceA": "Ambergris", "resourceB": "Cobalt Nodule", "color": "A0F0FF",
+                   "blurb": "Expensive but superb: radiant shields and swarms of homing glow-darts. A drifting cathedral as a flagship.",
+                   "shipStyle": { "core": true, "hull": "C8E8F0", "panel": "A0CCD8", "dark": "406070", "glow": "A0F0FF" } },
+    "gloam":     { "title": "Siphon Brood", "short": "Brood", "group": "The Twilight Zone", "resourceA": "Ambergris", "resourceB": "Cobalt Nodule", "color": "70FF90",
+                   "blurb": "Gelatinous, unshielded and regenerating. Larva swarms, stinging tendrils that steal crews, and colossal brood-bells.",
+                   "shipStyle": { "hull": "2E5A3E", "panel": "3E7A54", "dark": "14281C", "glow": "70FF90" } },
+    "satrapy":   { "title": "Nautilus Satrapy", "short": "Nautilus", "group": "The Twilight Zone", "resourceA": "Ambergris", "resourceB": "Cobalt Nodule", "color": "FFB0D0",
+                   "blurb": "Cheap minisub wings, strong shell wards, spiral cannons and elite boarders. Shell-galleons launch fighters.",
+                   "shipStyle": { "hull": "E8C8B0", "panel": "D09880", "dark": "6A4434" } },
+    "myriad":    { "title": "Krill Myriad", "short": "Krill", "group": "The Twilight Zone", "resourceA": "Ambergris", "resourceB": "Cobalt Nodule", "color": "FF7090",
+                   "blurb": "Cheap, fast and self-repairing. Ships spawn more krill swarms and infest enemy vessels.",
+                   "shipStyle": { "hull": "C05068", "panel": "E07088", "dark": "5A2030" } },
+
+    // --- Region 3 -----------------------------------------------------------------------------------
+    "seren":     { "title": "Glass Sponge Concord", "short": "Sponges", "group": "The Abyss", "resourceA": "Vent Crystal", "resourceB": "Bone Ore", "color": "C0FFF0",
+                   "blurb": "Elegant silica warships with silt veils that hide them from targeting, and devastating prism lances.",
+                   "shipStyle": { "hull": "D8F0EC", "panel": "B0D8D0", "dark": "507068" } },
+    "coalition": { "title": "Trench Coalition", "short": "Trench", "group": "The Abyss", "resourceA": "Vent Crystal", "resourceB": "Bone Ore", "color": "90B0FF",
+                   "blurb": "Rugged, cheap subs with flak screens, pulse cannons, torpedoes and minisub wings. Big ships open current gates.",
+                   "shipStyle": { "hull": "4A5A6E", "panel": "607288", "dark": "222A34" } },
+    "starwatch": { "title": "Abyss Wardens", "short": "Wardens", "group": "The Abyss", "resourceA": "Vent Crystal", "resourceB": "Bone Ore", "color": "60D0FF",
+                   "blurb": "Fast warden fleets built from sunken elder technology: adaptive armour and their own current gates.",
+                   "shipStyle": { "hull": "3A6880", "panel": "4E86A2", "dark": "1A303C" } },
+    "lumen":     { "title": "The Leviathans", "short": "Leviathans", "group": "The Abyss", "resourceA": "Vent Crystal", "resourceB": "Bone Ore", "color": "FFFFFF",
+                   "blurb": "The oldest and most powerful: living giants with arc lances, regeneration and the world-ender. Very expensive.",
+                   "shipStyle": { "organic": true, "hull": "506070", "panel": "6A7C8E", "dark": "202830", "glow": "E0F8FF" } },
+    "thornkin":  { "title": "Anglerfolk", "short": "Anglers", "group": "The Abyss", "resourceA": "Vent Crystal", "resourceB": "Biolume", "color": "FF4A5A",
+                   "blurb": "No shields, but enormous living hulls that regenerate. Rending lures, phasing and current gates.",
+                   "shipStyle": { "hull": "3A1E24", "panel": "5A2A34", "dark": "1A0C10", "glow": "FF4A5A" } },
+    "corvane":   { "title": "Kelp Court", "short": "Kelp", "group": "The Abyss", "resourceA": "Vent Crystal", "resourceB": "Bone Ore", "color": "40E080",
+                   "blurb": "Ornate jade-and-silver warships, seahorse fighter swarms, ion cannons and pressure bombardment.",
+                   "shipStyle": { "hull": "2E6A4A", "panel": "C8D0D8", "dark": "143020" } },
+    "kharast":   { "title": "Eel Horde", "short": "Eels", "group": "The Abyss", "resourceA": "Vent Crystal", "resourceB": "Bone Ore", "color": "FFE040",
+                   "blurb": "Tough, cheap and brutal: heavy shock cannons, jellymines, brute fighters and assault troops.",
+                   "shipStyle": { "form": "NEEDLE", "hull": "3E4A2A", "panel": "566438", "dark": "1C2212", "glow": "FFE040" } }
+  }
+}

@@ -1,0 +1,26 @@
+// Example 1: the smallest useful theme.
+// Renames one faction, its resources and three ships. Everything else stays as built in.
+{
+  "format": "convergence-theme",
+  "id": "example-rename-a-few",
+  "name": "Example: Rename a Few",
+  "author": "Convergence Themed examples",
+  "description": "Renames the Concord, its resources and three of its ships.",
+
+  "factions": {
+    "concord": {
+      "title": "The Blue League",
+      "short": "League",
+      "resourceA": "Starglass",
+      "resourceB": "Ironcore"
+    }
+  },
+
+  "units": {
+    // A plain string is just the ship's name.
+    "concord_t1": "Gnat",
+    // An object can also change the description. {faction} becomes the faction's short name.
+    "concord_t8": { "name": "Indomitable", "desc": "Flagship of the {faction}. There is only ever one." },
+    "concord_hq": { "name": "League Hall" }
+  }
+}

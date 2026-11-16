@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme file format · Convergence Themed</title>
+<meta name="description" content="The complete Convergence Themed theme file format: factions, units, generated art and hand-drawn art.">
+<meta property="og:title" content="Theme file format · Convergence Themed">
+<meta property="og:description" content="The complete Convergence Themed theme file format: factions, units, generated art and hand-drawn art.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://esheesle.github.io/convergence-themes/themes/format.html">
+<meta property="og:image" content="https://esheesle.github.io/convergence-themes/assets/icon-512.png">
+<meta name="theme-color" content="#05070f">
+<link rel="icon" type="image/png" href="../assets/icon-512.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="inner">
+  <a class="brand" href="../index.html"><img src="../assets/icon-512.png" alt="" width="32" height="32">Convergence Themed</a>
+  <nav class="site-nav" aria-label="Main"><a href="../index.html">Game</a><a href="../themes/index.html" aria-current="page">Themes</a><a href="../privacy.html">Privacy</a></nav>
+</div></header>
+<main id="main">
+<nav class="subnav" aria-label="Theme pages"><a href="index.html">Guide</a><a href="ai.html">AI prompts</a><a href="examples.html">Examples</a><a href="reference.html">Reference</a><a href="format.html" aria-current="page">File format</a></nav>
+<div class="prose page-head"><h1 id="theme-file-format">Theme file format</h1>
+<p>A theme is a single JSON file that renames and re-skins the game. It can change:</p>
+<ul>
+<li>faction names, region (menu group), resource names, faction colour and description,</li>
+<li>ship and station names and descriptions,</li>
+<li>weapon names and bolt/beam colours, ability names and descriptions,</li>
+<li>ship and station art, either generated from a style or drawn explicitly.</li>
+</ul>
+<p>It <strong>cannot</strong> change gameplay (stats, prices, abilities). Every theme plays identically.</p>
+<p>A theme only needs what it changes. Anything missing falls back to the built-in theme
+(<a href="../downloads/default.json">default.json</a>), which is also the best complete example to copy.</p>
+<p>Import a theme from <strong>Main menu ▸ Themes ▸ Import file…</strong>. Re-importing a theme with the same <code>id</code> replaces the old copy.</p>
+<p>The reader is lenient: <code>// line</code> and <code>/* block */</code> comments and trailing commas are allowed. Problems that don't stop
+the theme loading (an unknown unit id, a bad colour…) are listed on the Themes screen.</p>
+<h2 id="smallest-useful-theme">Smallest useful theme</h2>
+<pre><code class="language-json">{
+  &quot;format&quot;: &quot;convergence-theme&quot;,
+  &quot;id&quot;: &quot;my-names&quot;,
+  &quot;name&quot;: &quot;My Names&quot;,
+  &quot;factions&quot;: {
+    &quot;concord&quot;: { &quot;title&quot;: &quot;The Blue League&quot;, &quot;short&quot;: &quot;League&quot;, &quot;resourceA&quot;: &quot;Starglass&quot; }
+  },
+  &quot;units&quot;: {
+    &quot;concord_t8&quot;: { &quot;name&quot;: &quot;Indomitable&quot;, &quot;desc&quot;: &quot;Flagship of the League.&quot; },
+    &quot;concord_t1&quot;: &quot;Gnat&quot;
+  }
+}
+</code></pre>
+<p>A unit entry may be just a string (its name).</p>
+<h2 id="top-level">Top level</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>format</code></td>
+<td><code>"convergence-theme"</code> (optional, checked if present)</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>Stable id; also the file name it is stored under. Re-importing the same id replaces the old copy.</td>
+</tr>
+<tr>
+<td><code>name</code>, <code>author</code>, <code>description</code></td>
+<td>Shown in the Themes menu</td>
+</tr>
+<tr>
+<td><code>subtitle</code></td>
+<td>Tagline under the title on the main menu</td>
+</tr>
+<tr>
+<td><code>factions</code></td>
+<td>Object keyed by faction id (below)</td>
+</tr>
+<tr>
+<td><code>units</code></td>
+<td>Object keyed by unit id (below)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="factions">Factions</h2>
+<p>Faction ids are fixed (they identify the gameplay roster):</p>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Faction ids</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>concord</code>, <code>accretion</code>, <code>shroud</code>, <code>vardek</code>, <code>saurak</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>helios</code>, <code>luminar</code>, <code>gloam</code>, <code>satrapy</code>, <code>myriad</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>seren</code>, <code>coalition</code>, <code>starwatch</code>, <code>lumen</code>, <code>thornkin</code>, <code>corvane</code>, <code>kharast</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each faction's play style is described by its <code>blurb</code> in the <a href="reference.html">theme reference</a>.</p>
+<pre><code class="language-jsonc">&quot;concord&quot;: {
+  &quot;title&quot;: &quot;Concord of Worlds&quot;,       // full name
+  &quot;short&quot;: &quot;Concord&quot;,                 // used on buttons and in messages
+  &quot;group&quot;: &quot;Meridian Sector&quot;,         // menu heading; factions with the same group are listed together
+  &quot;resourceA&quot;: &quot;Aurorite&quot;,            // mined from crystal moons by freighters
+  &quot;resourceB&quot;: &quot;Duralloy&quot;,            // extracted from asteroid fields by mining stations
+  &quot;color&quot;: &quot;6FC8FF&quot;,                  // shields, jump flashes, area-blast effects
+  &quot;blurb&quot;: &quot;Balanced fleets with ...&quot;,
+  &quot;weapons&quot;:   { &quot;beam1&quot;: &quot;Lance Emitter&quot;, &quot;torp1&quot;: { &quot;name&quot;: &quot;Singularity Torpedo&quot;, &quot;color&quot;: &quot;6AB8FF&quot; } },
+  &quot;abilities&quot;: { &quot;cloak&quot;: &quot;Phase Veil&quot;, &quot;repair_field&quot;: { &quot;name&quot;: &quot;Emergency Repairs&quot;, &quot;desc&quot;: &quot;...&quot; } },
+  &quot;shipStyle&quot;:    { ... },            // see &quot;Generated art&quot;
+  &quot;stationStyle&quot;: { ... }
+}
+</code></pre>
+<p><strong>Weapon and ability keys.</strong> Weapons are keyed per faction as <code>beam1</code>, <code>beam2</code>, <code>bolt1</code>, <code>torp1</code>…; abilities by
+type, numbered when a faction has several of one type: <code>cloak</code>, <code>cloak2</code>, <code>jump</code>, <code>shield_boost3</code>, <code>absorb</code>… The
+complete list for every faction is in the <a href="reference.html">theme reference</a>. A value can be a plain name or an object with <code>name</code>
+plus <code>color</code> (weapons) or <code>desc</code> (abilities). Leave out an ability's <code>desc</code> and the game writes an accurate one.</p>
+<p><strong>Colours</strong> are <code>RRGGBB</code> or <code>RRGGBBAA</code> hex, with or without <code>#</code>.</p>
+<h2 id="units">Units</h2>
+<p>Unit ids are <code>&lt;faction&gt;_&lt;slot&gt;</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scout</code>, <code>constructor</code>, <code>freighter</code></td>
+<td>Utility ships</td>
+</tr>
+<tr>
+<td><code>t1</code> … <code>t8</code></td>
+<td>Warships by tier; <code>t8</code> is the flagship. A second ship of the same tier is <code>t2b</code>.</td>
+</tr>
+<tr>
+<td><code>t1_launched</code></td>
+<td>Fighter wing spawned by carriers (factions with fighter wings)</td>
+</tr>
+<tr>
+<td><code>hq</code>, <code>shipyard</code>, <code>research</code>, <code>adv_shipyard</code>, <code>refinery</code>, <code>mining</code>, <code>defense</code>, <code>sensor</code></td>
+<td>Stations</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-jsonc">&quot;concord_t3&quot;: {
+  &quot;name&quot;: &quot;Hailstorm-class&quot;,
+  &quot;desc&quot;: &quot;Heavy escort packed with torpedo launchers.&quot;,
+  &quot;weapons&quot;:   [ null, { &quot;name&quot;: &quot;Torpedo Rack&quot;, &quot;color&quot;: &quot;FF5A2A&quot; } ],   // by position; null = keep
+  &quot;abilities&quot;: [ { &quot;name&quot;: &quot;Seeker Barrage&quot;, &quot;desc&quot;: &quot;...&quot; } ],
+  &quot;art&quot;: { ... }                                                         // optional, see below
+}
+</code></pre>
+<p>Per-unit <code>weapons</code>/<code>abilities</code> override the faction-wide names for that ship only.</p>
+<p><strong>Text placeholders</strong> work in any description or blurb: <code>{resourceA}</code>, <code>{resourceB}</code>, <code>{faction}</code> (short name),
+<code>{count}</code>, <code>{duration}</code>, <code>{spawn}</code> (the launched fighter's name; in ability text), <code>{advancedShipyard}</code>.</p>
+<h2 id="generated-art">Generated art</h2>
+<p>Most themes only need a style per faction. The generator then draws every ship from the faction style plus the
+ship's role and tier: larger tiers get wider hulls, superstructure decks, bigger wings, pods and more detail.</p>
+<p><code>shipStyle</code> fields (all optional):</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Values</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>form</code></td>
+<td><code>WEDGE</code> <code>DART</code> <code>NEEDLE</code> <code>SPINDLE</code> <code>BLADE</code> <code>CRESCENT</code> <code>SLAB</code> <code>ORB</code> <code>SHARD</code> <code>SEED</code> <code>MANTA</code> <code>HAMMER</code> <code>TRIDENT</code> <code>ARROW</code> <code>CLUSTER</code></td>
+<td>Hull silhouette</td>
+</tr>
+<tr>
+<td><code>capitalForm</code></td>
+<td>same</td>
+<td>Hull for tier 5-8 (defaults to <code>form</code>)</td>
+</tr>
+<tr>
+<td><code>wings</code></td>
+<td><code>NONE</code> <code>SWEPT</code> <code>FORWARD</code> <code>DELTA</code> <code>STRAIGHT</code> <code>CANARD</code> <code>FINS</code> <code>CLAWS</code> <code>SPINES</code> <code>RING</code></td>
+<td>Flank structures</td>
+</tr>
+<tr>
+<td><code>engines</code></td>
+<td><code>SINGLE</code> <code>TWIN</code> <code>QUAD</code> <code>BANK</code> <code>RING</code></td>
+<td>Stern engine layout</td>
+</tr>
+<tr>
+<td><code>plating</code></td>
+<td><code>NONE</code> <code>PANELS</code> <code>GREEBLES</code> <code>RIBS</code> <code>FACETS</code></td>
+<td>Surface detail</td>
+</tr>
+<tr>
+<td><code>pods</code></td>
+<td>0-2</td>
+<td>Pairs of engine pods on pylons (from tier 3; the second pair from tier 6)</td>
+</tr>
+<tr>
+<td><code>width</code></td>
+<td>0.4-2.5</td>
+<td>Hull width multiplier</td>
+</tr>
+<tr>
+<td><code>organic</code></td>
+<td>true/false</td>
+<td>Smooth, wobbly outlines and glowing veins</td>
+</tr>
+<tr>
+<td><code>windows</code></td>
+<td>true/false</td>
+<td>Window rows</td>
+</tr>
+<tr>
+<td><code>core</code></td>
+<td>true/false</td>
+<td>Glowing reactor core</td>
+</tr>
+<tr>
+<td><code>hull</code> <code>panel</code> <code>dark</code> <code>light</code> <code>engine</code> <code>glow</code></td>
+<td>colours</td>
+<td>Palette (<code>light</code> = windows, <code>glow</code> = energy details)</td>
+</tr>
+<tr>
+<td><code>rim</code></td>
+<td>colour</td>
+<td>Outline colour (helps very dark hulls)</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>integer</td>
+<td>Changes the random details</td>
+</tr>
+</tbody>
+</table>
+<p><code>stationStyle</code> fields: <code>shape</code> (<code>ROUND</code> <code>ANGULAR</code> <code>ORGANIC</code> <code>BLOCKY</code> <code>CRYSTAL</code>), <code>hull</code>, <code>panel</code>, <code>dark</code>, <code>light</code>,
+<code>glow</code>, <code>seed</code>.</p>
+<p>Style fields merge with the built-in theme's, so <code>{ "shipStyle": { "hull": "AA3333" } }</code> recolours a faction and keeps
+its shapes.</p>
+<p>A unit can override the generator for itself only:</p>
+<pre><code class="language-json">&quot;concord_t8&quot;: { &quot;art&quot;: { &quot;generator&quot;: &quot;ship&quot;, &quot;form&quot;: &quot;TRIDENT&quot;, &quot;wings&quot;: &quot;DELTA&quot;, &quot;variant&quot;: 7 } }
+</code></pre>
+<p>Extra fields here: <code>kind</code> (<code>SCOUT</code> <code>CONSTRUCTOR</code> <code>FREIGHTER</code> <code>FIGHTER</code> <code>WARSHIP</code>), <code>tier</code>, <code>flagship</code>, <code>variant</code>.
+Use <code>{ "generator": "station", "shape": "CRYSTAL" }</code> for stations, and <code>{ "copy": "concord_t1" }</code> to reuse
+another unit's art.</p>
+<h2 id="explicit-hand-drawn-art">Explicit (hand-drawn) art</h2>
+<p>For full control, give a unit a vector design. Coordinates are art units: <strong>+x is the bow</strong>, <strong>+y is port</strong>, and the
+design is centred on (0, 0) inside a <code>w</code> × <code>h</code> box. The game scales the box's width to the ship's length, so only the
+proportions matter.</p>
+<pre><code class="language-jsonc">&quot;art&quot;: {
+  &quot;w&quot;: 100, &quot;h&quot;: 60,
+  &quot;palette&quot;: { &quot;hull&quot;: &quot;CDD2DA&quot;, &quot;glow&quot;: &quot;7FE0FF&quot; },   // optional; use as &quot;$hull&quot;
+  &quot;rim&quot;: &quot;8090A0&quot;,                                     // optional outline colour
+  &quot;flipX&quot;: false,                                      // mirror bow/stern when baking
+  &quot;parts&quot;:  [ [&quot;poly&quot;, &quot;$hull&quot;, 0.4, 0.8, 50,0, -50,25, -40,0, -50,-25] ],
+  &quot;accent&quot;: [ [&quot;rect&quot;, &quot;FFFFFF&quot;, 0, 0, 0,-3, 20,3] ],  // tinted with the player's colour
+  &quot;engines&quot;: [ [&quot;$glow&quot;, -48, 0, 4, 1] ]               // [colour, x, y, radius, pulse 0/1]
+}
+</code></pre>
+<p>Parts are drawn in order. <code>shade</code> (0-1) is how strongly a shape is lit toward its middle. <code>outline</code> is the edge
+width (0 = none). Names ending in <code>M</code> also draw a copy mirrored across the centreline.</p>
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Arguments after the colour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>poly</code>, <code>polyM</code></td>
+<td>shade, outline, x1, y1, x2, y2, x3, y3, …</td>
+</tr>
+<tr>
+<td><code>ellipse</code>, <code>ellipseM</code></td>
+<td>shade, outline, cx, cy, rx, ry, rotationDeg</td>
+</tr>
+<tr>
+<td><code>circle</code></td>
+<td>shade, outline, cx, cy, r</td>
+</tr>
+<tr>
+<td><code>rect</code>, <code>rectM</code></td>
+<td>shade, outline, x0, y0, x1, y1</td>
+</tr>
+<tr>
+<td><code>ngon</code></td>
+<td>shade, outline, cx, cy, r, sides, rotationDeg</td>
+</tr>
+<tr>
+<td><code>spike</code>, <code>spikeM</code></td>
+<td>shade, outline, x, y, angleDeg, length, baseWidth, curveDeg</td>
+</tr>
+<tr>
+<td><code>teardrop</code></td>
+<td>shade, outline, sternX, bowX, halfWidth, bluntness, cy</td>
+</tr>
+<tr>
+<td><code>line</code>, <code>lineM</code></td>
+<td>width, x1, y1, x2, y2</td>
+</tr>
+<tr>
+<td><code>glow</code>, <code>glowM</code></td>
+<td>cx, cy, r (soft additive-looking spot)</td>
+</tr>
+<tr>
+<td><code>ring</code></td>
+<td>width, cx, cy, rx, ry</td>
+</tr>
+<tr>
+<td><code>windows</code></td>
+<td>x1, y1, x2, y2, count, size</td>
+</tr>
+</tbody>
+</table>
+<p>Every ship should have at least one <code>accent</code> part, so players can tell whose ship it is.</p></div>
+</main>
+<footer class="site-footer"><div class="inner">
+  <span>© 2026 Convergence Themed. Contact: <a href="mailto:apps@swlr.net">apps@swlr.net</a></span>
+  <span><a href="../privacy.html">Privacy policy</a> · <a href="../themes/index.html">Make a theme</a></span>
+</div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

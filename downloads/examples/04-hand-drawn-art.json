@@ -1,0 +1,62 @@
+// Example 4: hand-drawn (explicit) art.
+// Coordinates: +x is the bow (front), +y is port (left). The design is centred on (0, 0) inside a w x h box.
+// The game scales the box to the ship's size, so only the proportions matter.
+{
+  "format": "convergence-theme",
+  "id": "example-hand-drawn",
+  "name": "Example: Hand-drawn Art",
+  "author": "Convergence Themed examples",
+  "description": "A hand-drawn Concord escort, a copy of it for the frigate, and a hand-drawn defence platform.",
+
+  "units": {
+    "concord_t1": {
+      "name": "Arrowhead",
+      "art": {
+        "w": 100, "h": 60,
+        // Palette entries are used as "$name" below, so you can recolour the whole ship in one place.
+        "palette": { "hull": "CDD2DA", "panel": "8E99A8", "dark": "3C4450", "glow": "7FE0FF" },
+        "rim": "6A7584",
+        "parts": [
+          // [shape, colour, shade, outline, ...numbers]. Parts are drawn in order, back to front.
+          ["rectM",   "$dark",  0.3,  0.8, -50, 13, -20, 23],                        // engine nacelles (mirrored)
+          ["polyM",   "$panel", 0.35, 0.8, 5, 9, -28, 27, -40, 27, -30, 9],          // swept wings (mirrored)
+          ["poly",    "$hull",  0.45, 0.8, 50, 0, 12, 11, -40, 14, -48, 7, -48, -7, -40, -14, 12, -11],  // main hull
+          ["ellipse", "$glow",  0.6,  0.4, 22, 0, 9, 4, 0],                          // cockpit canopy
+          ["lineM",   "$panel", 0.8, -36, 5, 8, 5],                                  // panel lines
+          ["windows", "FFF1BF", -30, 0, 6, 0, 5, 2.5],                               // a row of 5 windows, 2.5 units wide
+          ["glowM",   "$glow", -51, 18, 7]                                           // soft engine light
+        ],
+        // Accent parts are tinted with the player's team colour. Every ship needs at least one.
+        "accent": [
+          ["polyM", "FFFFFF", 0.2, 0, -8, 10, -27, 24, -33, 24, -16, 10]
+        ],
+        // [colour, x, y, radius, pulse (1 = flickers)]
+        "engines": [
+          ["$glow", -51, 18, 4, 1],
+          ["$glow", -51, -18, 4, 1],
+          ["$glow", -49, 0, 5, 1]
+        ]
+      }
+    },
+
+    // Reuse another unit's art. The frigate is drawn exactly like the Arrowhead.
+    "concord_t2b": { "name": "Arrowhead Mk II", "art": { "copy": "concord_t1" } },
+
+    "concord_defense": {
+      "name": "Hex Battery",
+      "art": {
+        "w": 70, "h": 70,
+        "palette": { "hull": "B8C0CC", "dark": "4A5260", "glow": "7FE0FF" },
+        "parts": [
+          ["ngon",   "$dark", 0.3, 1.0, 0, 0, 34, 6, 0],      // outer hexagon
+          ["ngon",   "$hull", 0.5, 0.8, 0, 0, 27, 6, 30],     // inner hexagon, rotated 30 degrees
+          ["rectM",  "$dark", 0.3, 0.6, 6, 16, 30, 22],       // gun barrels (mirrored)
+          ["rect",   "$dark", 0.3, 0.6, 10, -3, 38, 3],       // centre gun barrel
+          ["circle", "$hull", 0.6, 0.8, 0, 0, 12],            // turret dome
+          ["glow",   "$glow", 0, 0, 10]
+        ],
+        "accent": [ ["ring", "FFFFFF", 3, 0, 0, 20, 20] ]
+      }
+    }
+  }
+}

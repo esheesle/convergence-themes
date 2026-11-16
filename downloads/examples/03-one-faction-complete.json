@@ -1,0 +1,102 @@
+// Example 3: one faction, completely re-imagined.
+// The Concord becomes a Victorian aether navy: every name, weapon, ability, ship and station, plus new art styles.
+// Gameplay is unchanged. The Royal Navy still plays like the Concord (balanced, strong shields, repair support).
+{
+  "format": "convergence-theme",
+  "id": "example-royal-aether-navy",
+  "name": "Example: Royal Aether Navy",
+  "author": "Convergence Themed examples",
+  "description": "The Concord as a brass-and-mahogany aether navy. Shows every field a faction can use.",
+
+  "factions": {
+    "concord": {
+      "title": "Royal Aether Navy",
+      "short": "Navy",
+      "group": "The Home Reaches",           // a new menu heading; only this faction is listed under it
+      "resourceA": "Aether Crystal",
+      "resourceB": "Brass",
+      "color": "FFD27A",
+      "blurb": "Balanced squadrons with stout wards, galvanic cannon and clockwork torpedoes. Superb dockyard crews keep the fleet patched up.",
+
+      // Weapon keys come from the theme reference (THEME_REFERENCE). A name only, or { name, color } for the shot colour.
+      "weapons": {
+        "beam1": { "name": "Galvanic Projector", "color": "9FE8FF" },
+        "beam2": "Galvanic Battery",
+        "bolt1": { "name": "Aether Carronade", "color": "FFB347" },
+        "torp1": { "name": "Clockwork Torpedo", "color": "FFD27A" },
+        "torp2": "Homing Torpedo",
+        "beam3": "Heavy Projector",
+        "beam4": "Broadside Projectors",
+        "beam5": "Heavy Galvanic Battery",
+        "beam6": "Admiralty Battery",
+        "beam7": "Swivel Projector"
+      },
+
+      // Ability descriptions are optional. Leave "desc" out and the game writes an accurate one.
+      // {duration} and {count} are filled in with the real numbers.
+      "abilities": {
+        "sensor_pulse": { "name": "Lookout Flare", "desc": "Fires a flare that lights an area for {duration}s, revealing even veiled ships." },
+        "sensor_pulse2": "Great Signal Lamp",
+        "cloak": { "name": "Fog Screen", "desc": "Hides the ship in aether fog. It cannot fire while hidden." },
+        "torpedo_barrage": { "name": "Full Spread", "desc": "Looses {count} torpedoes at once." },
+        "torpedo_barrage2": "Admiralty Spread",
+        "repair_field": "Damage Control Parties",
+        "repair_field2": "Dockyard Crews",
+        "shield_boost": { "name": "Ward Overcharge", "desc": "Halves damage taken and recharges the wards quickly for {duration}s." },
+        "shield_boost2": "Resonant Wards",
+        "tractor_beam": "Grappling Lines"
+      },
+
+      // Generated art: a long, narrow hull with sails-like fins, ribbed planking and brass colours.
+      "shipStyle": {
+        "form": "NEEDLE", "capitalForm": "SPINDLE", "wings": "FINS", "engines": "BANK", "plating": "RIBS",
+        "pods": 1, "width": 0.9, "windows": true,
+        "hull": "6B4226", "panel": "8A5A36", "dark": "3A2414", "light": "FFE6A8",
+        "engine": "9FE8FF", "glow": "FFD27A", "rim": "C89B5A", "seed": 1805
+      },
+      "stationStyle": {
+        "shape": "BLOCKY",
+        "hull": "6B4226", "panel": "B08D57", "dark": "3A2414", "light": "FFE6A8", "glow": "FFD27A", "seed": 1806
+      }
+    }
+  },
+
+  "units": {
+    "concord_scout":       { "name": "Picket Cutter", "desc": "Fast cutter with a tall lookout mast." },
+    "concord_constructor": { "name": "Dockyard Tender", "desc": "Builds and repairs the Navy's stations." },
+    "concord_freighter":   { "name": "Collier", "desc": "Harvests {resourceA} from crystal moons." },
+
+    "concord_t1":  { "name": "HMS Wren",       "desc": "Light sloop. Cheap and quick to build." },
+    "concord_t2":  { "name": "HMS Bulldog",    "desc": "Overgunned brig with carronades, clockwork torpedoes and an experimental fog screen." },
+    "concord_t2b": { "name": "HMS Swift",      "desc": "Fast frigate with a bow torpedo tube." },
+    "concord_t3":  {
+      "name": "HMS Thunderer",
+      "desc": "Torpedo ram, bristling with tubes.",
+      // Per-ship overrides go by position in that ship's weapon list. null keeps the faction-wide name.
+      "weapons": [ null, { "name": "Ram Torpedo Tube", "color": "FF7A3A" } ]
+    },
+    "concord_t4":  { "name": "HMS Discovery",  "desc": "Fast survey cruiser that carries damage control parties." },
+    "concord_t5":  { "name": "HMS Resolute",   "desc": "Sturdy, long-serving heavy cruiser." },
+    "concord_t6":  { "name": "HMS Endeavour",  "desc": "Survey cruiser whose great signal lamp sees through fog screens." },
+    "concord_t7":  { "name": "HMS Leviathan",  "desc": "Ship of the line with broadside projectors, grappling lines and dockyard crews." },
+    "concord_t8":  {
+      "name": "HMS Sovereign",
+      "desc": "Flagship of the {faction}. Clockwork torpedoes and the Admiralty's finest batteries.",
+      // Give the flagship a different silhouette from the rest of the fleet. Missing fields come from shipStyle.
+      "art": { "generator": "ship", "form": "HAMMER", "wings": "STRAIGHT", "pods": 2, "variant": 3 }
+    },
+
+    "concord_hq":           { "name": "The Admiralty" },
+    "concord_shipyard":     { "name": "Royal Dockyard" },
+    "concord_research":     { "name": "Royal Society Observatory" },
+    "concord_adv_shipyard": { "name": "Grand Dry Dock" },
+    "concord_refinery":     { "name": "Aether Works" },
+    "concord_mining":       { "name": "Brass Foundry" },
+    "concord_defense":      { "name": "Harbour Battery" },
+    "concord_sensor":       {
+      "name": "Lighthouse",
+      // A station can use a different generator shape from the faction's stationStyle.
+      "art": { "generator": "station", "shape": "CRYSTAL" }
+    }
+  }
+}

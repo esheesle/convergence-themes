@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make your own theme · Convergence Themed</title>
+<meta name="description" content="How to make, import and share Convergence Themed themes: by hand, from an example, or with an AI.">
+<meta property="og:title" content="Make your own theme · Convergence Themed">
+<meta property="og:description" content="How to make, import and share Convergence Themed themes: by hand, from an example, or with an AI.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://esheesle.github.io/convergence-themes/themes/">
+<meta property="og:image" content="https://esheesle.github.io/convergence-themes/assets/icon-512.png">
+<meta name="theme-color" content="#05070f">
+<link rel="icon" type="image/png" href="../assets/icon-512.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="inner">
+  <a class="brand" href="../index.html"><img src="../assets/icon-512.png" alt="" width="32" height="32">Convergence Themed</a>
+  <nav class="site-nav" aria-label="Main"><a href="../index.html">Game</a><a href="../themes/index.html" aria-current="page">Themes</a><a href="../privacy.html">Privacy</a></nav>
+</div></header>
+<main id="main">
+<nav class="subnav" aria-label="Theme pages"><a href="index.html" aria-current="page">Guide</a><a href="ai.html">AI prompts</a><a href="examples.html">Examples</a><a href="reference.html">Reference</a><a href="format.html">File format</a></nav>
+<div class="prose"><h1 id="make-your-own-theme">Make your own theme</h1>
+<p>A <strong>theme</strong> renames and re-skins the whole game. It can change faction names, regions, resources, colours, ship
+and station names, weapon and ability names, and the art of every ship. It never changes how the game plays.
+Every theme plays the same, so you can turn the war into pirates, insects, sea creatures or your own invented
+universe.</p>
+<p>A theme is one text file in JSON format. You can write it by hand, start from an example, or have an AI write
+it for you.</p>
+<h2 id="before-you-start">Before you start</h2>
+<ul>
+<li>Importing and using your own themes is part of the <strong>Full Game</strong> unlock (Main menu ▸ Themes).</li>
+<li>You need a way to edit a plain-text file. On a computer, any text editor works (Notepad, TextEdit in plain-text mode, VS Code). On Android, use any plain-text or code editor app, or write the file on a computer and copy it to your phone.</li>
+<li>Save the file with a <code>.json</code> extension, for example <code>pirates.json</code>.</li>
+</ul>
+<h2 id="three-ways-to-make-a-theme">Three ways to make a theme</h2>
+<h3 id="1-start-from-an-example-easiest">1. Start from an example (easiest)</h3>
+<ol>
+<li>Download the <a href="examples.html">example</a> that's closest to what you want. For example, <a href="examples.html#example-01">rename-a-few</a> for a few renames.</li>
+<li>Change the <code>id</code> and <code>name</code> at the top, so your theme doesn't replace the example.</li>
+<li>Edit the text inside the quotes. Look up any id you need in the <a href="reference.html">theme reference</a>. For example, the Vardek tier 4 warship is <code>vardek_t4</code>.</li>
+<li>Import it (see <a href="#importing-your-theme">Importing your theme</a>).</li>
+</ol>
+<h3 id="2-ask-an-ai">2. Ask an AI</h3>
+<ol>
+<li>Open the <a href="ai.html">AI prompt builder</a>.</li>
+<li>Pick a task, fill in your idea and copy the prompt into a new chat with your AI assistant. Attach <a href="../downloads/THEME_REFERENCE.txt">THEME_REFERENCE.txt</a>.</li>
+<li>Copy the JSON the AI writes into a new <code>.json</code> file, then import it.</li>
+<li>If the Themes screen lists problems, use the <a href="ai.html?task=9">Fix problems prompt</a>.</li>
+</ol>
+<h3 id="3-write-it-from-scratch">3. Write it from scratch</h3>
+<p>Every theme starts like this:</p>
+<pre><code class="language-json">{
+  &quot;format&quot;: &quot;convergence-theme&quot;,
+  &quot;id&quot;: &quot;my-theme&quot;,
+  &quot;name&quot;: &quot;My Theme&quot;,
+  &quot;author&quot;: &quot;Your name&quot;,
+  &quot;description&quot;: &quot;One line shown in the Themes menu.&quot;,
+  &quot;factions&quot;: { },
+  &quot;units&quot;: { }
+}
+</code></pre>
+<p>Fill in <code>factions</code> and <code>units</code> using the ids from the <a href="reference.html">theme reference</a>. <strong>You only include what you change.</strong>
+Anything you leave out keeps its built-in name and look.</p>
+<h2 id="how-the-pieces-fit-together">How the pieces fit together</h2>
+<p><strong>Factions</strong> are keyed by a fixed id (<code>concord</code>, <code>vardek</code>, <code>helios</code>…):</p>
+<pre><code class="language-jsonc">&quot;vardek&quot;: {
+  &quot;title&quot;: &quot;Comet Raiders&quot;,          // full name
+  &quot;short&quot;: &quot;Raiders&quot;,                // used on buttons and in messages, so keep it short
+  &quot;group&quot;: &quot;The Outer Dark&quot;,         // menu heading; factions with the same group are listed together
+  &quot;resourceA&quot;: &quot;Ice&quot;,                // mined from crystal moons by freighters
+  &quot;resourceB&quot;: &quot;Slag&quot;,               // extracted from asteroid fields by mining stations
+  &quot;color&quot;: &quot;FF6A3A&quot;,                 // shields, jump flashes and blast effects
+  &quot;blurb&quot;: &quot;Cheap, aggressive raiders who hide in comet tails and board their prey.&quot;,
+  &quot;weapons&quot;:   { &quot;bolt1&quot;: &quot;Ice Cannon&quot;, &quot;torp1&quot;: { &quot;name&quot;: &quot;Comet Torpedo&quot;, &quot;color&quot;: &quot;A0E0FF&quot; } },
+  &quot;abilities&quot;: { &quot;cloak&quot;: &quot;Comet Tail&quot;, &quot;boarding&quot;: &quot;Boarding Hooks&quot; },
+  &quot;shipStyle&quot;:    { &quot;form&quot;: &quot;BLADE&quot;, &quot;hull&quot;: &quot;8A8E96&quot; },
+  &quot;stationStyle&quot;: { &quot;shape&quot;: &quot;ANGULAR&quot; }
+}
+</code></pre>
+<p><strong>Units</strong> are keyed by <code>&lt;faction&gt;_&lt;slot&gt;</code>. Ships are <code>scout</code>, <code>constructor</code>, <code>freighter</code>, warships <code>t1</code>…<code>t8</code>
+(<code>t8</code> is the flagship), and <code>t1_launched</code> for carrier fighters. Stations are <code>hq</code>, <code>shipyard</code>, <code>research</code>,
+<code>adv_shipyard</code>, <code>refinery</code>, <code>mining</code>, <code>defense</code> and <code>sensor</code>.</p>
+<pre><code class="language-jsonc">&quot;vardek_t1&quot;: &quot;Skiff&quot;,                                          // name only
+&quot;vardek_t8&quot;: { &quot;name&quot;: &quot;The Long Night&quot;, &quot;desc&quot;: &quot;Flagship of the {faction}.&quot; }
+</code></pre>
+<p><strong>Placeholders.</strong> In descriptions and blurbs (not in names), the game fills in <code>{resourceA}</code>, <code>{resourceB}</code>,
+<code>{faction}</code>, <code>{count}</code>, <code>{duration}</code>, <code>{spawn}</code> and <code>{advancedShipyard}</code> with real values.</p>
+<p><strong>Ability descriptions</strong> are optional. If you leave <code>desc</code> out, the game writes an accurate one for you.</p>
+<h3 id="art">Art</h3>
+<p>You don't have to draw anything. Each faction's ships are generated from its <code>shipStyle</code>. Larger tiers
+automatically get bigger hulls, more decks and more detail. Try these first:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Try</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>form</code> (hull shape)</td>
+<td><code>WEDGE</code> <code>DART</code> <code>NEEDLE</code> <code>SPINDLE</code> <code>BLADE</code> <code>CRESCENT</code> <code>SLAB</code> <code>ORB</code> <code>SHARD</code> <code>SEED</code> <code>MANTA</code> <code>HAMMER</code> <code>TRIDENT</code> <code>ARROW</code> <code>CLUSTER</code></td>
+</tr>
+<tr>
+<td><code>capitalForm</code></td>
+<td>Same choices; used for tiers 5-8</td>
+</tr>
+<tr>
+<td><code>wings</code></td>
+<td><code>NONE</code> <code>SWEPT</code> <code>FORWARD</code> <code>DELTA</code> <code>STRAIGHT</code> <code>CANARD</code> <code>FINS</code> <code>CLAWS</code> <code>SPINES</code> <code>RING</code></td>
+</tr>
+<tr>
+<td><code>engines</code></td>
+<td><code>SINGLE</code> <code>TWIN</code> <code>QUAD</code> <code>BANK</code> <code>RING</code></td>
+</tr>
+<tr>
+<td><code>plating</code></td>
+<td><code>NONE</code> <code>PANELS</code> <code>GREEBLES</code> <code>RIBS</code> <code>FACETS</code></td>
+</tr>
+<tr>
+<td><code>organic</code></td>
+<td><code>true</code> for smooth, living-looking hulls with glowing veins</td>
+</tr>
+<tr>
+<td><code>hull</code> <code>panel</code> <code>dark</code> <code>light</code> <code>engine</code> <code>glow</code> <code>rim</code></td>
+<td>Colours</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>Any number. Change it to reshuffle the small details</td>
+</tr>
+</tbody>
+</table>
+<p>If you give only colours, each ship keeps its built-in shape. For full control, draw ships with vector shapes.
+See <a href="examples.html#example-04">hand-drawn-art</a> and the "Explicit art" section of the <a href="format.html">file format page</a>.</p>
+<p>Colours are hex codes like <code>"FF6A3A"</code>. Any online "colour picker" shows them. Space is black, so keep hulls
+mid-tone or lighter, or set a light <code>rim</code> (outline) colour.</p>
+<h2 id="importing-your-theme">Importing your theme</h2>
+<ol>
+<li>Put the <code>.json</code> file on your phone, for example in Downloads or Google Drive.</li>
+<li>In the game, open <strong>Main menu ▸ Themes ▸ Import file…</strong> and pick the file.</li>
+<li>Select the theme in the list and tap <strong>Use this theme</strong>.</li>
+</ol>
+<p><strong>Updating a theme.</strong> Import the edited file again. If it has the same <code>id</code>, it replaces the old copy. To
+remove a theme, select it and tap <strong>Delete</strong> twice.</p>
+<h2 id="when-something-goes-wrong">When something goes wrong</h2>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Not valid JSON"</td>
+<td>A missing comma, quote or bracket. The message gives the position. A JSON validator website or an AI (<a href="ai.html?task=9">Fix problems prompt</a>) will find it quickly. Comments (<code>//</code>) and trailing commas are allowed.</td>
+</tr>
+<tr>
+<td>"The file has no factions or units"</td>
+<td>Check that your names are inside <code>"factions": { … }</code> or <code>"units": { … }</code>.</td>
+</tr>
+<tr>
+<td><code>unknown faction "…"</code> / <code>unknown unit "…"</code> in the problem list</td>
+<td>The id is misspelled or doesn't exist. Look it up in the <a href="reference.html">theme reference</a>.</td>
+</tr>
+<tr>
+<td><code>Bad colour "…"</code></td>
+<td>Use 6 or 8 hex digits, e.g. <code>"3A6BD8"</code>.</td>
+</tr>
+<tr>
+<td><code>unknown value "…"</code> for form, wings…</td>
+<td>Use one of the values from the table above.</td>
+</tr>
+<tr>
+<td>A weapon or ability keeps its old name</td>
+<td>The key doesn't belong to that faction. Each faction has its own list in the <a href="reference.html">theme reference</a>.</td>
+</tr>
+<tr>
+<td><code>{resourceA}</code> shows up literally</td>
+<td>Placeholders only work in descriptions and blurbs, not in names.</td>
+</tr>
+<tr>
+<td>Ships are hard to see</td>
+<td>Use lighter hull colours, or add a <code>rim</code> colour.</td>
+</tr>
+</tbody>
+</table>
+<p>Problems that don't stop a theme from loading are listed on the Themes screen under the theme's details. Fix
+them and import the file again.</p>
+<h2 id="sharing-themes">Sharing themes</h2>
+<p>Themes are ordinary files, so you can share them with friends any way you like. Please keep shared themes
+original, and don't use names or artwork from existing films, shows, games or books.</p></div>
+</main>
+<footer class="site-footer"><div class="inner">
+  <span>© 2026 Convergence Themed. Contact: <a href="mailto:apps@swlr.net">apps@swlr.net</a></span>
+  <span><a href="../privacy.html">Privacy policy</a> · <a href="../themes/index.html">Make a theme</a></span>
+</div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

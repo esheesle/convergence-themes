@@ -1,0 +1,33 @@
+// Example 2: recolour factions without renaming anything.
+// Style fields merge with the built-in ones, so giving only colours keeps every ship's shape.
+{
+  "format": "convergence-theme",
+  "id": "example-midnight-paint",
+  "name": "Example: Midnight Paint",
+  "author": "Convergence Themed examples",
+  "description": "Darker hulls and neon trim for four factions. Names and shapes are unchanged.",
+  "subtitle": "Same war. Darker paint.",
+
+  "factions": {
+    "concord": {
+      "color": "00E5FF",                     // shields, jump flashes and blast effects
+      "weapons": { "beam1": { "name": "Lance Emitter", "color": "00E5FF" } },
+      "shipStyle":    { "hull": "2A3140", "panel": "3A4458", "dark": "12161E", "light": "00E5FF", "engine": "00E5FF", "glow": "00E5FF", "rim": "5A6A88" },
+      "stationStyle": { "hull": "2A3140", "panel": "3A4458", "dark": "12161E", "light": "00E5FF", "glow": "00E5FF" }
+    },
+    "vardek": {
+      "color": "FF2E88",
+      "shipStyle":    { "hull": "2B2B30", "panel": "3C3C44", "dark": "141418", "light": "FF2E88", "engine": "FF2E88", "glow": "FF2E88", "rim": "6A6A78" },
+      "stationStyle": { "hull": "2B2B30", "panel": "3C3C44", "dark": "141418", "light": "FF2E88", "glow": "FF2E88" }
+    },
+    "helios": {
+      "color": "B4FF39",
+      "shipStyle":    { "hull": "30362A", "panel": "434B3A", "dark": "161A12", "light": "B4FF39", "engine": "B4FF39", "glow": "B4FF39", "rim": "6E7A5E" }
+    },
+    "seren": {
+      "color": "FFB000",
+      // Changing "seed" redraws the random details (greebles, window rows) without changing the style.
+      "shipStyle":    { "hull": "3A2E22", "panel": "54422E", "dark": "1C150F", "light": "FFD27A", "engine": "FFB000", "glow": "FFB000", "seed": 4242 }
+    }
+  }
+}

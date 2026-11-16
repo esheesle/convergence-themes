@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example themes · Convergence Themed</title>
+<meta name="description" content="Ready-to-import example themes for Convergence Themed, from a few renames to all 17 factions.">
+<meta property="og:title" content="Example themes · Convergence Themed">
+<meta property="og:description" content="Ready-to-import example themes for Convergence Themed, from a few renames to all 17 factions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://esheesle.github.io/convergence-themes/themes/examples.html">
+<meta property="og:image" content="https://esheesle.github.io/convergence-themes/assets/icon-512.png">
+<meta name="theme-color" content="#05070f">
+<link rel="icon" type="image/png" href="../assets/icon-512.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="inner">
+  <a class="brand" href="../index.html"><img src="../assets/icon-512.png" alt="" width="32" height="32">Convergence Themed</a>
+  <nav class="site-nav" aria-label="Main"><a href="../index.html">Game</a><a href="../themes/index.html" aria-current="page">Themes</a><a href="../privacy.html">Privacy</a></nav>
+</div></header>
+<main id="main">
+<nav class="subnav" aria-label="Theme pages"><a href="index.html">Guide</a><a href="ai.html">AI prompts</a><a href="examples.html" aria-current="page">Examples</a><a href="reference.html">Reference</a><a href="format.html">File format</a></nav>
+
+<div class="page-head prose">
+<h1>Example themes</h1>
+<p>Each example is a complete, importable theme. Download one and import it in <b>Main menu ▸ Themes ▸ Import file…</b>,
+or open it in a text editor and use it as a starting point. Change its <code>id</code> and <code>name</code> first, so
+your version doesn't replace the example.</p>
+</div>
+
+<article class="card example" id="example-01">
+  <div class="meta">
+    <div><h3>Rename a Few</h3>
+    <p>Renames the Concord, its resources and three of its ships.</p></div>
+    <a class="btn btn-ghost" href="../downloads/examples/01-rename-a-few.json" download>Download 01-rename-a-few.json</a>
+  </div>
+  <p class="muted" style="margin-top:10px">The smallest useful theme. Renames one faction, its resources and three ships. Everything else stays as built in.</p>
+  <details><summary>Show the file</summary><pre><code class="language-json">// Example 1: the smallest useful theme.
+// Renames one faction, its resources and three ships. Everything else stays as built in.
+{
+  &quot;format&quot;: &quot;convergence-theme&quot;,
+  &quot;id&quot;: &quot;example-rename-a-few&quot;,
+  &quot;name&quot;: &quot;Example: Rename a Few&quot;,
+  &quot;author&quot;: &quot;Convergence Themed examples&quot;,
+  &quot;description&quot;: &quot;Renames the Concord, its resources and three of its ships.&quot;,
+
+  &quot;factions&quot;: {
+    &quot;concord&quot;: {
+      &quot;title&quot;: &quot;The Blue League&quot;,
+      &quot;short&quot;: &quot;League&quot;,
+      &quot;resourceA&quot;: &quot;Starglass&quot;,
+      &quot;resourceB&quot;: &quot;Ironcore&quot;
+    }
+  },
+
+  &quot;units&quot;: {
+    // A plain string is just the ship&#x27;s name.
+    &quot;concord_t1&quot;: &quot;Gnat&quot;,
+    // An object can also change the description. {faction} becomes the faction&#x27;s short name.
+    &quot;concord_t8&quot;: { &quot;name&quot;: &quot;Indomitable&quot;, &quot;desc&quot;: &quot;Flagship of the {faction}. There is only ever one.&quot; },
+    &quot;concord_hq&quot;: { &quot;name&quot;: &quot;League Hall&quot; }
+  }
+}</code></pre></details>
+</article>
+<article class="card example" id="example-02">
+  <div class="meta">
+    <div><h3>Midnight Paint</h3>
+    <p>Darker hulls and neon trim for four factions. Names and shapes are unchanged.</p></div>
+    <a class="btn btn-ghost" href="../downloads/examples/02-recolour.json" download>Download 02-recolour.json</a>
+  </div>
+  <p class="muted" style="margin-top:10px">Recolour factions without renaming anything. Style fields merge with the built-in ones, so giving only colours keeps every ship&#x27;s shape.</p>
+  <details><summary>Show the file</summary><pre><code class="language-json">// Example 2: recolour factions without renaming anything.
+// Style fields merge with the built-in ones, so giving only colours keeps every ship&#x27;s shape.
+{
+  &quot;format&quot;: &quot;convergence-theme&quot;,
+  &quot;id&quot;: &quot;example-midnight-paint&quot;,
+  &quot;name&quot;: &quot;Example: Midnight Paint&quot;,
+  &quot;author&quot;: &quot;Convergence Themed examples&quot;,
+  &quot;description&quot;: &quot;Darker hulls and neon trim for four factions. Names and shapes are unchanged.&quot;,
+  &quot;subtitle&quot;: &quot;Same war. Darker paint.&quot;,
+
+  &quot;factions&quot;: {
+    &quot;concord&quot;: {
+      &quot;color&quot;: &quot;00E5FF&quot;,                     // shields, jump flashes and blast effects
+      &quot;weapons&quot;: { &quot;beam1&quot;: { &quot;name&quot;: &quot;Lance Emitter&quot;, &quot;color&quot;: &quot;00E5FF&quot; } },
+      &quot;shipStyle&quot;:    { &quot;hull&quot;: &quot;2A3140&quot;, &quot;panel&quot;: &quot;3A4458&quot;, &quot;dark&quot;: &quot;12161E&quot;, &quot;light&quot;: &quot;00E5FF&quot;, &quot;engine&quot;: &quot;00E5FF&quot;, &quot;glow&quot;: &quot;00E5FF&quot;, &quot;rim&quot;: &quot;5A6A88&quot; },
+      &quot;stationStyle&quot;: { &quot;hull&quot;: &quot;2A3140&quot;, &quot;panel&quot;: &quot;3A4458&quot;, &quot;dark&quot;: &quot;12161E&quot;, &quot;light&quot;: &quot;00E5FF&quot;, &quot;glow&quot;: &quot;00E5FF&quot; }
+    },
+    &quot;vardek&quot;: {
+      &quot;color&quot;: &quot;FF2E88&quot;,
+      &quot;shipStyle&quot;:    { &quot;hull&quot;: &quot;2B2B30&quot;, &quot;panel&quot;: &quot;3C3C44&quot;, &quot;dark&quot;: &quot;141418&quot;, &quot;light&quot;: &quot;FF2E88&quot;, &quot;engine&quot;: &quot;FF2E88&quot;, &quot;glow&quot;: &quot;FF2E88&quot;, &quot;rim&quot;: &quot;6A6A78&quot; },
+      &quot;stationStyle&quot;: { &quot;hull&quot;: &quot;2B2B30&quot;, &quot;panel&quot;: &quot;3C3C44&quot;, &quot;dark&quot;: &quot;141418&quot;, &quot;light&quot;: &quot;FF2E88&quot;, &quot;glow&quot;: &quot;FF2E88&quot; }
+    },
+    &quot;helios&quot;: {
+      &quot;color&quot;: &quot;B4FF39&quot;,
+      &quot;shipStyle&quot;:    { &quot;hull&quot;: &quot;30362A&quot;, &quot;panel&quot;: &quot;434B3A&quot;, &quot;dark&quot;: &quot;161A12&quot;, &quot;light&quot;: &quot;B4FF39&quot;, &quot;engine&quot;: &quot;B4FF39&quot;, &quot;glow&quot;: &quot;B4FF39&quot;, &quot;rim&quot;: &quot;6E7A5E&quot; }
+    },
+    &quot;seren&quot;: {
+      &quot;color&quot;: &quot;FFB000&quot;,
+      // Changing &quot;seed&quot; redraws the random details (greebles, window rows) without changing the style.
+      &quot;shipStyle&quot;:    { &quot;hull&quot;: &quot;3A2E22&quot;, &quot;panel&quot;: &quot;54422E&quot;, &quot;dark&quot;: &quot;1C150F&quot;, &quot;light&quot;: &quot;FFD27A&quot;, &quot;engine&quot;: &quot;FFB000&quot;, &quot;glow&quot;: &quot;FFB000&quot;, &quot;seed&quot;: 4242 }
+    }
+  }
+}</code></pre></details>
+</article>
+<article class="card example" id="example-03">
+  <div class="meta">
+    <div><h3>Royal Aether Navy</h3>
+    <p>The Concord as a brass-and-mahogany aether navy. Shows every field a faction can use.</p></div>
+    <a class="btn btn-ghost" href="../downloads/examples/03-one-faction-complete.json" download>Download 03-one-faction-complete.json</a>
+  </div>
+  <p class="muted" style="margin-top:10px">One faction, completely re-imagined. The Concord becomes a Victorian aether navy: every name, weapon, ability, ship and station, plus new art styles. Gameplay is unchanged. The Royal Navy still plays like the Concord (balanced, strong shields, repair support).</p>
+  <details><summary>Show the file</summary><pre><code class="language-json">// Example 3: one faction, completely re-imagined.
+// The Concord becomes a Victorian aether navy: every name, weapon, ability, ship and station, plus new art styles.
+// Gameplay is unchanged. The Royal Navy still plays like the Concord (balanced, strong shields, repair support).
+{
+  &quot;format&quot;: &quot;convergence-theme&quot;,
+  &quot;id&quot;: &quot;example-royal-aether-navy&quot;,
+  &quot;name&quot;: &quot;Example: Royal Aether Navy&quot;,
+  &quot;author&quot;: &quot;Convergence Themed examples&quot;,
+  &quot;description&quot;: &quot;The Concord as a brass-and-mahogany aether navy. Shows every field a faction can use.&quot;,
+
+  &quot;factions&quot;: {
+    &quot;concord&quot;: {
+      &quot;title&quot;: &quot;Royal Aether Navy&quot;,
+      &quot;short&quot;: &quot;Navy&quot;,
+      &quot;group&quot;: &quot;The Home Reaches&quot;,           // a new menu heading; only this faction is listed under it
+      &quot;resourceA&quot;: &quot;Aether Crystal&quot;,
+      &quot;resourceB&quot;: &quot;Brass&quot;,
+      &quot;color&quot;: &quot;FFD27A&quot;,
+      &quot;blurb&quot;: &quot;Balanced squadrons with stout wards, galvanic cannon and clockwork torpedoes. Superb dockyard crews keep the fleet patched up.&quot;,
+
+      // Weapon keys come from the theme reference (THEME_REFERENCE). A name only, or { name, color } for the shot colour.
+      &quot;weapons&quot;: {
+        &quot;beam1&quot;: { &quot;name&quot;: &quot;Galvanic Projector&quot;, &quot;color&quot;: &quot;9FE8FF&quot; },
+        &quot;beam2&quot;: &quot;Galvanic Battery&quot;,
+        &quot;bolt1&quot;: { &quot;name&quot;: &quot;Aether Carronade&quot;, &quot;color&quot;: &quot;FFB347&quot; },
+        &quot;torp1&quot;: { &quot;name&quot;: &quot;Clockwork Torpedo&quot;, &quot;color&quot;: &quot;FFD27A&quot; },
+        &quot;torp2&quot;: &quot;Homing Torpedo&quot;,
+        &quot;beam3&quot;: &quot;Heavy Projector&quot;,
+        &quot;beam4&quot;: &quot;Broadside Projectors&quot;,
+        &quot;beam5&quot;: &quot;Heavy Galvanic Battery&quot;,
+        &quot;beam6&quot;: &quot;Admiralty Battery&quot;,
+        &quot;beam7&quot;: &quot;Swivel Projector&quot;
+      },
+
+      // Ability descriptions are optional. Leave &quot;desc&quot; out and the game writes an accurate one.
+      // {duration} and {count} are filled in with the real numbers.
+      &quot;abilities&quot;: {
+        &quot;sensor_pulse&quot;: { &quot;name&quot;: &quot;Lookout Flare&quot;, &quot;desc&quot;: &quot;Fires a flare that lights an area for {duration}s, revealing even veiled ships.&quot; },
+        &quot;sensor_pulse2&quot;: &quot;Great Signal Lamp&quot;,
+        &quot;cloak&quot;: { &quot;name&quot;: &quot;Fog Screen&quot;, &quot;desc&quot;: &quot;Hides the ship in aether fog. It cannot fire while hidden.&quot; },
+        &quot;torpedo_barrage&quot;: { &quot;name&quot;: &quot;Full Spread&quot;, &quot;desc&quot;: &quot;Looses {count} torpedoes at once.&quot; },
+        &quot;torpedo_barrage2&quot;: &quot;Admiralty Spread&quot;,
+        &quot;repair_field&quot;: &quot;Damage Control Parties&quot;,
+        &quot;repair_field2&quot;: &quot;Dockyard Crews&quot;,
+        &quot;shield_boost&quot;: { &quot;name&quot;: &quot;Ward Overcharge&quot;, &quot;desc&quot;: &quot;Halves damage taken and recharges the wards quickly for {duration}s.&quot; },
+        &quot;shield_boost2&quot;: &quot;Resonant Wards&quot;,
+        &quot;tractor_beam&quot;: &quot;Grappling Lines&quot;
+      },
+
+      // Generated art: a long, narrow hull with sails-like fins, ribbed planking and brass colours.
+      &quot;shipStyle&quot;: {
+        &quot;form&quot;: &quot;NEEDLE&quot;, &quot;capitalForm&quot;: &quot;SPINDLE&quot;, &quot;wings&quot;: &quot;FINS&quot;, &quot;engines&quot;: &quot;BANK&quot;, &quot;plating&quot;: &quot;RIBS&quot;,
+        &quot;pods&quot;: 1, &quot;width&quot;: 0.9, &quot;windows&quot;: true,
+        &quot;hull&quot;: &quot;6B4226&quot;, &quot;panel&quot;: &quot;8A5A36&quot;, &quot;dark&quot;: &quot;3A2414&quot;, &quot;light&quot;: &quot;FFE6A8&quot;,
+        &quot;engine&quot;: &quot;9FE8FF&quot;, &quot;glow&quot;: &quot;FFD27A&quot;, &quot;rim&quot;: &quot;C89B5A&quot;, &quot;seed&quot;: 1805
+      },
+      &quot;stationStyle&quot;: {
+        &quot;shape&quot;: &quot;BLOCKY&quot;,
+        &quot;hull&quot;: &quot;6B4226&quot;, &quot;panel&quot;: &quot;B08D57&quot;, &quot;dark&quot;: &quot;3A2414&quot;, &quot;light&quot;: &quot;FFE6A8&quot;, &quot;glow&quot;: &quot;FFD27A&quot;, &quot;seed&quot;: 1806
+      }
+    }
+  },
+
+  &quot;units&quot;: {
+    &quot;concord_scout&quot;:       { &quot;name&quot;: &quot;Picket Cutter&quot;, &quot;desc&quot;: &quot;Fast cutter with a tall lookout mast.&quot; },
+    &quot;concord_constructor&quot;: { &quot;name&quot;: &quot;Dockyard Tender&quot;, &quot;desc&quot;: &quot;Builds and repairs the Navy&#x27;s stations.&quot; },
+    &quot;concord_freighter&quot;:   { &quot;name&quot;: &quot;Collier&quot;, &quot;desc&quot;: &quot;Harvests {resourceA} from crystal moons.&quot; },
+
+    &quot;concord_t1&quot;:  { &quot;name&quot;: &quot;HMS Wren&quot;,       &quot;desc&quot;: &quot;Light sloop. Cheap and quick to build.&quot; },
+    &quot;concord_t2&quot;:  { &quot;name&quot;: &quot;HMS Bulldog&quot;,    &quot;desc&quot;: &quot;Overgunned brig with carronades, clockwork torpedoes and an experimental fog screen.&quot; },
+    &quot;concord_t2b&quot;: { &quot;name&quot;: &quot;HMS Swift&quot;,      &quot;desc&quot;: &quot;Fast frigate with a bow torpedo tube.&quot; },
+    &quot;concord_t3&quot;:  {
+      &quot;name&quot;: &quot;HMS Thunderer&quot;,
+      &quot;desc&quot;: &quot;Torpedo ram, bristling with tubes.&quot;,
+      // Per-ship overrides go by position in that ship&#x27;s weapon list. null keeps the faction-wide name.
+      &quot;weapons&quot;: [ null, { &quot;name&quot;: &quot;Ram Torpedo Tube&quot;, &quot;color&quot;: &quot;FF7A3A&quot; } ]
+    },
+    &quot;concord_t4&quot;:  { &quot;name&quot;: &quot;HMS Discovery&quot;,  &quot;desc&quot;: &quot;Fast survey cruiser that carries damage control parties.&quot; },
+    &quot;concord_t5&quot;:  { &quot;name&quot;: &quot;HMS Resolute&quot;,   &quot;desc&quot;: &quot;Sturdy, long-serving heavy cruiser.&quot; },
+    &quot;concord_t6&quot;:  { &quot;name&quot;: &quot;HMS Endeavour&quot;,  &quot;desc&quot;: &quot;Survey cruiser whose great signal lamp sees through fog screens.&quot; },
+    &quot;concord_t7&quot;:  { &quot;name&quot;: &quot;HMS Leviathan&quot;,  &quot;desc&quot;: &quot;Ship of the line with broadside projectors, grappling lines and dockyard crews.&quot; },
+    &quot;concord_t8&quot;:  {
+      &quot;name&quot;: &quot;HMS Sovereign&quot;,
+      &quot;desc&quot;: &quot;Flagship of the {faction}. Clockwork torpedoes and the Admiralty&#x27;s finest batteries.&quot;,
+      // Give the flagship a different silhouette from the rest of the fleet. Missing fields come from shipStyle.
+      &quot;art&quot;: { &quot;generator&quot;: &quot;ship&quot;, &quot;form&quot;: &quot;HAMMER&quot;, &quot;wings&quot;: &quot;STRAIGHT&quot;, &quot;pods&quot;: 2, &quot;variant&quot;: 3 }
+    },
+
+    &quot;concord_hq&quot;:           { &quot;name&quot;: &quot;The Admiralty&quot; },
+    &quot;concord_shipyard&quot;:     { &quot;name&quot;: &quot;Royal Dockyard&quot; },
+    &quot;concord_research&quot;:     { &quot;name&quot;: &quot;Royal Society Observatory&quot; },
+    &quot;concord_adv_shipyard&quot;: { &quot;name&quot;: &quot;Grand Dry Dock&quot; },
+    &quot;concord_refinery&quot;:     { &quot;name&quot;: &quot;Aether Works&quot; },
+    &quot;concord_mining&quot;:       { &quot;name&quot;: &quot;Brass Foundry&quot; },
+    &quot;concord_defense&quot;:      { &quot;name&quot;: &quot;Harbour Battery&quot; },
+    &quot;concord_sensor&quot;:       {
+      &quot;name&quot;: &quot;Lighthouse&quot;,
+      // A station can use a different generator shape from the faction&#x27;s stationStyle.
+      &quot;art&quot;: { &quot;generator&quot;: &quot;station&quot;, &quot;shape&quot;: &quot;CRYSTAL&quot; }
+    }
+  }
+}</code></pre></details>
+</article>
+<article class="card example" id="example-04">
+  <div class="meta">
+    <div><h3>Hand-drawn Art</h3>
+    <p>A hand-drawn Concord escort, a copy of it for the frigate, and a hand-drawn defence platform.</p></div>
+    <a class="btn btn-ghost" href="../downloads/examples/04-hand-drawn-art.json" download>Download 04-hand-drawn-art.json</a>
+  </div>
+  <p class="muted" style="margin-top:10px">Hand-drawn (explicit) art. Coordinates: +x is the bow (front), +y is port (left). The design is centred on (0, 0) inside a w x h box. The game scales the box to the ship&#x27;s size, so only the proportions matter.</p>
+  <details><summary>Show the file</summary><pre><code class="language-json">// Example 4: hand-drawn (explicit) art.
+// Coordinates: +x is the bow (front), +y is port (left). The design is centred on (0, 0) inside a w x h box.
+// The game scales the box to the ship&#x27;s size, so only the proportions matter.
+{
+  &quot;format&quot;: &quot;convergence-theme&quot;,
+  &quot;id&quot;: &quot;example-hand-drawn&quot;,
+  &quot;name&quot;: &quot;Example: Hand-drawn Art&quot;,
+  &quot;author&quot;: &quot;Convergence Themed examples&quot;,
+  &quot;description&quot;: &quot;A hand-drawn Concord escort, a copy of it for the frigate, and a hand-drawn defence platform.&quot;,
+
+  &quot;units&quot;: {
+    &quot;concord_t1&quot;: {
+      &quot;name&quot;: &quot;Arrowhead&quot;,
+      &quot;art&quot;: {
+        &quot;w&quot;: 100, &quot;h&quot;: 60,
+        // Palette entries are used as &quot;$name&quot; below, so you can recolour the whole ship in one place.
+        &quot;palette&quot;: { &quot;hull&quot;: &quot;CDD2DA&quot;, &quot;panel&quot;: &quot;8E99A8&quot;, &quot;dark&quot;: &quot;3C4450&quot;, &quot;glow&quot;: &quot;7FE0FF&quot; },
+        &quot;rim&quot;: &quot;6A7584&quot;,
+        &quot;parts&quot;: [
+          // [shape, colour, shade, outline, ...numbers]. Parts are drawn in order, back to front.
+          [&quot;rectM&quot;,   &quot;$dark&quot;,  0.3,  0.8, -50, 13, -20, 23],                        // engine nacelles (mirrored)
+          [&quot;polyM&quot;,   &quot;$panel&quot;, 0.35, 0.8, 5, 9, -28, 27, -40, 27, -30, 9],          // swept wings (mirrored)
+          [&quot;poly&quot;,    &quot;$hull&quot;,  0.45, 0.8, 50, 0, 12, 11, -40, 14, -48, 7, -48, -7, -40, -14, 12, -11],  // main hull
+          [&quot;ellipse&quot;, &quot;$glow&quot;,  0.6,  0.4, 22, 0, 9, 4, 0],                          // cockpit canopy
+          [&quot;lineM&quot;,   &quot;$panel&quot;, 0.8, -36, 5, 8, 5],                                  // panel lines
+          [&quot;windows&quot;, &quot;FFF1BF&quot;, -30, 0, 6, 0, 5, 2.5],                               // a row of 5 windows, 2.5 units wide
+          [&quot;glowM&quot;,   &quot;$glow&quot;, -51, 18, 7]                                           // soft engine light
+        ],
+        // Accent parts are tinted with the player&#x27;s team colour. Every ship needs at least one.
+        &quot;accent&quot;: [
+          [&quot;polyM&quot;, &quot;FFFFFF&quot;, 0.2, 0, -8, 10, -27, 24, -33, 24, -16, 10]
+        ],
+        // [colour, x, y, radius, pulse (1 = flickers)]
+        &quot;engines&quot;: [
+          [&quot;$glow&quot;, -51, 18, 4, 1],
+          [&quot;$glow&quot;, -51, -18, 4, 1],
+          [&quot;$glow&quot;, -49, 0, 5, 1]
+        ]
+      }
+    },
+
+    // Reuse another unit&#x27;s art. The frigate is drawn exactly like the Arrowhead.
+    &quot;concord_t2b&quot;: { &quot;name&quot;: &quot;Arrowhead Mk II&quot;, &quot;art&quot;: { &quot;copy&quot;: &quot;concord_t1&quot; } },
+
+    &quot;concord_defense&quot;: {
+      &quot;name&quot;: &quot;Hex Battery&quot;,
+      &quot;art&quot;: {
+        &quot;w&quot;: 70, &quot;h&quot;: 70,
+        &quot;palette&quot;: { &quot;hull&quot;: &quot;B8C0CC&quot;, &quot;dark&quot;: &quot;4A5260&quot;, &quot;glow&quot;: &quot;7FE0FF&quot; },
+        &quot;parts&quot;: [
+          [&quot;ngon&quot;,   &quot;$dark&quot;, 0.3, 1.0, 0, 0, 34, 6, 0],      // outer hexagon
+          [&quot;ngon&quot;,   &quot;$hull&quot;, 0.5, 0.8, 0, 0, 27, 6, 30],     // inner hexagon, rotated 30 degrees
+          [&quot;rectM&quot;,  &quot;$dark&quot;, 0.3, 0.6, 6, 16, 30, 22],       // gun barrels (mirrored)
+          [&quot;rect&quot;,   &quot;$dark&quot;, 0.3, 0.6, 10, -3, 38, 3],       // centre gun barrel
+          [&quot;circle&quot;, &quot;$hull&quot;, 0.6, 0.8, 0, 0, 12],            // turret dome
+          [&quot;glow&quot;,   &quot;$glow&quot;, 0, 0, 10]
+        ],
+        &quot;accent&quot;: [ [&quot;ring&quot;, &quot;FFFFFF&quot;, 3, 0, 0, 20, 20] ]
+      }
+    }
+  }
+}</code></pre></details>
+</article>
+<article class="card example" id="example-05">
+  <div class="meta">
+    <div><h3>Abyssal Tides</h3>
+    <p>All seventeen factions reimagined as deep-sea powers across three ocean depths.</p></div>
+    <a class="btn btn-ghost" href="../downloads/examples/05-all-factions-ocean.json" download>Download 05-all-factions-ocean.json</a>
+  </div>
+  <p class="muted" style="margin-top:10px">Every faction at once, as undersea civilisations. Shows region names (&quot;group&quot;), resources, colours, blurbs and art styles for all 17 factions. Ship, weapon and ability names are left out, so they keep their built-in names. The AI prompts (AI_PROMPTS.md, or the AI prompt builder on the website) can fill those in too.</p>
+  <details><summary>Show the file</summary><pre><code class="language-json">// Example 5: every faction at once, as undersea civilisations.
+// Shows region names (&quot;group&quot;), resources, colours, blurbs and art styles for all 17 factions.
+// Ship, weapon and ability names are left out, so they keep their built-in names.
+// The AI prompts (AI_PROMPTS.md, or the AI prompt builder on the website) can fill those in too.
+{
+  &quot;format&quot;: &quot;convergence-theme&quot;,
+  &quot;id&quot;: &quot;example-abyssal-tides&quot;,
+  &quot;name&quot;: &quot;Example: Abyssal Tides&quot;,
+  &quot;author&quot;: &quot;Convergence Themed examples&quot;,
+  &quot;description&quot;: &quot;All seventeen factions reimagined as deep-sea powers across three ocean depths.&quot;,
+  &quot;subtitle&quot;: &quot;Seventeen fleets. Three depths. One tide.&quot;,
+
+  &quot;factions&quot;: {
+    // --- Region 1 -----------------------------------------------------------------------------------
+    &quot;concord&quot;:   { &quot;title&quot;: &quot;Coral Accord&quot;, &quot;short&quot;: &quot;Accord&quot;, &quot;group&quot;: &quot;The Sunlit Shelf&quot;, &quot;resourceA&quot;: &quot;Pearl&quot;, &quot;resourceB&quot;: &quot;Coralite&quot;, &quot;color&quot;: &quot;5FE0D0&quot;,
+                   &quot;blurb&quot;: &quot;Balanced reef fleets with strong bubble wards, current lances and homing darts. Excellent field repairs.&quot;,
+                   &quot;shipStyle&quot;: { &quot;form&quot;: &quot;MANTA&quot;, &quot;organic&quot;: true, &quot;plating&quot;: &quot;RIBS&quot;, &quot;hull&quot;: &quot;E8D8C4&quot;, &quot;panel&quot;: &quot;D2B89A&quot;, &quot;dark&quot;: &quot;6E5A48&quot;, &quot;light&quot;: &quot;FFFFFF&quot;, &quot;engine&quot;: &quot;5FE0D0&quot;, &quot;glow&quot;: &quot;5FE0D0&quot; },
+                   &quot;stationStyle&quot;: { &quot;shape&quot;: &quot;ORGANIC&quot;, &quot;hull&quot;: &quot;E8D8C4&quot;, &quot;panel&quot;: &quot;F08A7A&quot;, &quot;dark&quot;: &quot;6E5A48&quot;, &quot;glow&quot;: &quot;5FE0D0&quot; } },
+    &quot;accretion&quot;: { &quot;title&quot;: &quot;The Barnacle Mass&quot;, &quot;short&quot;: &quot;Mass&quot;, &quot;group&quot;: &quot;The Sunlit Shelf&quot;, &quot;resourceA&quot;: &quot;Pearl&quot;, &quot;resourceB&quot;: &quot;Wreck Iron&quot;, &quot;color&quot;: &quot;C8A060&quot;,
+                   &quot;blurb&quot;: &quot;A crusted colony that grows over what it defeats. Slow, massive and self-healing, with grinding beams and the power to absorb crippled ships.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;5C5448&quot;, &quot;panel&quot;: &quot;7A6E5C&quot;, &quot;dark&quot;: &quot;2A2620&quot;, &quot;glow&quot;: &quot;C8A060&quot; } },
+    &quot;shroud&quot;:    { &quot;title&quot;: &quot;Ink Dominion&quot;, &quot;short&quot;: &quot;Ink&quot;, &quot;group&quot;: &quot;The Sunlit Shelf&quot;, &quot;resourceA&quot;: &quot;Pearl&quot;, &quot;resourceB&quot;: &quot;Blackshell&quot;, &quot;color&quot;: &quot;9A70FF&quot;,
+                   &quot;blurb&quot;: &quot;Almost every ship can hide in an ink cloud. Venom torpedoes, keen-sensed scouts and a flagship whose toxin bloom kills whole crews.&quot;,
+                   &quot;shipStyle&quot;: { &quot;organic&quot;: true, &quot;hull&quot;: &quot;2E2448&quot;, &quot;panel&quot;: &quot;48386E&quot;, &quot;dark&quot;: &quot;140F22&quot;, &quot;glow&quot;: &quot;B090FF&quot; } },
+    &quot;vardek&quot;:    { &quot;title&quot;: &quot;Shark Clans&quot;, &quot;short&quot;: &quot;Sharks&quot;, &quot;group&quot;: &quot;The Sunlit Shelf&quot;, &quot;resourceA&quot;: &quot;Pearl&quot;, &quot;resourceB&quot;: &quot;Blackshell&quot;, &quot;color&quot;: &quot;FF5A4A&quot;,
+                   &quot;blurb&quot;: &quot;Aggressive, tough and cheap. Hidden raiders, heavy jaws and boarding swarms.&quot;,
+                   &quot;shipStyle&quot;: { &quot;form&quot;: &quot;BLADE&quot;, &quot;wings&quot;: &quot;FINS&quot;, &quot;hull&quot;: &quot;6A7480&quot;, &quot;panel&quot;: &quot;8A949E&quot;, &quot;dark&quot;: &quot;30363C&quot; } },
+    &quot;saurak&quot;:    { &quot;title&quot;: &quot;Crab Throne&quot;, &quot;short&quot;: &quot;Crabs&quot;, &quot;group&quot;: &quot;The Sunlit Shelf&quot;, &quot;resourceA&quot;: &quot;Pearl&quot;, &quot;resourceB&quot;: &quot;Blackshell&quot;, &quot;color&quot;: &quot;FF8A3A&quot;,
+                   &quot;blurb&quot;: &quot;Heavily armoured, slow brawlers with acid spitters and vicious boarding parties.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;A0482E&quot;, &quot;panel&quot;: &quot;C2603C&quot;, &quot;dark&quot;: &quot;4E2216&quot;, &quot;glow&quot;: &quot;FFB060&quot; } },
+
+    // --- Region 2 -----------------------------------------------------------------------------------
+    &quot;helios&quot;:    { &quot;title&quot;: &quot;Diving Bell Compact&quot;, &quot;short&quot;: &quot;Divers&quot;, &quot;group&quot;: &quot;The Twilight Zone&quot;, &quot;resourceA&quot;: &quot;Ambergris&quot;, &quot;resourceB&quot;: &quot;Cobalt Nodule&quot;, &quot;color&quot;: &quot;FFD060&quot;,
+                   &quot;blurb&quot;: &quot;Brass harpoon guns, depth charges and minisub wings, upgraded with salvaged shields and blast charges. Pressure jumps.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;B08D57&quot;, &quot;panel&quot;: &quot;C8A46A&quot;, &quot;dark&quot;: &quot;4A3A22&quot;, &quot;light&quot;: &quot;FFE6A8&quot; } },
+    &quot;luminar&quot;:   { &quot;title&quot;: &quot;Lantern Choir&quot;, &quot;short&quot;: &quot;Lanterns&quot;, &quot;group&quot;: &quot;The Twilight Zone&quot;, &quot;resourceA&quot;: &quot;Ambergris&quot;, &quot;resourceB&quot;: &quot;Cobalt Nodule&quot;, &quot;color&quot;: &quot;A0F0FF&quot;,
+                   &quot;blurb&quot;: &quot;Expensive but superb: radiant shields and swarms of homing glow-darts. A drifting cathedral as a flagship.&quot;,
+                   &quot;shipStyle&quot;: { &quot;core&quot;: true, &quot;hull&quot;: &quot;C8E8F0&quot;, &quot;panel&quot;: &quot;A0CCD8&quot;, &quot;dark&quot;: &quot;406070&quot;, &quot;glow&quot;: &quot;A0F0FF&quot; } },
+    &quot;gloam&quot;:     { &quot;title&quot;: &quot;Siphon Brood&quot;, &quot;short&quot;: &quot;Brood&quot;, &quot;group&quot;: &quot;The Twilight Zone&quot;, &quot;resourceA&quot;: &quot;Ambergris&quot;, &quot;resourceB&quot;: &quot;Cobalt Nodule&quot;, &quot;color&quot;: &quot;70FF90&quot;,
+                   &quot;blurb&quot;: &quot;Gelatinous, unshielded and regenerating. Larva swarms, stinging tendrils that steal crews, and colossal brood-bells.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;2E5A3E&quot;, &quot;panel&quot;: &quot;3E7A54&quot;, &quot;dark&quot;: &quot;14281C&quot;, &quot;glow&quot;: &quot;70FF90&quot; } },
+    &quot;satrapy&quot;:   { &quot;title&quot;: &quot;Nautilus Satrapy&quot;, &quot;short&quot;: &quot;Nautilus&quot;, &quot;group&quot;: &quot;The Twilight Zone&quot;, &quot;resourceA&quot;: &quot;Ambergris&quot;, &quot;resourceB&quot;: &quot;Cobalt Nodule&quot;, &quot;color&quot;: &quot;FFB0D0&quot;,
+                   &quot;blurb&quot;: &quot;Cheap minisub wings, strong shell wards, spiral cannons and elite boarders. Shell-galleons launch fighters.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;E8C8B0&quot;, &quot;panel&quot;: &quot;D09880&quot;, &quot;dark&quot;: &quot;6A4434&quot; } },
+    &quot;myriad&quot;:    { &quot;title&quot;: &quot;Krill Myriad&quot;, &quot;short&quot;: &quot;Krill&quot;, &quot;group&quot;: &quot;The Twilight Zone&quot;, &quot;resourceA&quot;: &quot;Ambergris&quot;, &quot;resourceB&quot;: &quot;Cobalt Nodule&quot;, &quot;color&quot;: &quot;FF7090&quot;,
+                   &quot;blurb&quot;: &quot;Cheap, fast and self-repairing. Ships spawn more krill swarms and infest enemy vessels.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;C05068&quot;, &quot;panel&quot;: &quot;E07088&quot;, &quot;dark&quot;: &quot;5A2030&quot; } },
+
+    // --- Region 3 -----------------------------------------------------------------------------------
+    &quot;seren&quot;:     { &quot;title&quot;: &quot;Glass Sponge Concord&quot;, &quot;short&quot;: &quot;Sponges&quot;, &quot;group&quot;: &quot;The Abyss&quot;, &quot;resourceA&quot;: &quot;Vent Crystal&quot;, &quot;resourceB&quot;: &quot;Bone Ore&quot;, &quot;color&quot;: &quot;C0FFF0&quot;,
+                   &quot;blurb&quot;: &quot;Elegant silica warships with silt veils that hide them from targeting, and devastating prism lances.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;D8F0EC&quot;, &quot;panel&quot;: &quot;B0D8D0&quot;, &quot;dark&quot;: &quot;507068&quot; } },
+    &quot;coalition&quot;: { &quot;title&quot;: &quot;Trench Coalition&quot;, &quot;short&quot;: &quot;Trench&quot;, &quot;group&quot;: &quot;The Abyss&quot;, &quot;resourceA&quot;: &quot;Vent Crystal&quot;, &quot;resourceB&quot;: &quot;Bone Ore&quot;, &quot;color&quot;: &quot;90B0FF&quot;,
+                   &quot;blurb&quot;: &quot;Rugged, cheap subs with flak screens, pulse cannons, torpedoes and minisub wings. Big ships open current gates.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;4A5A6E&quot;, &quot;panel&quot;: &quot;607288&quot;, &quot;dark&quot;: &quot;222A34&quot; } },
+    &quot;starwatch&quot;: { &quot;title&quot;: &quot;Abyss Wardens&quot;, &quot;short&quot;: &quot;Wardens&quot;, &quot;group&quot;: &quot;The Abyss&quot;, &quot;resourceA&quot;: &quot;Vent Crystal&quot;, &quot;resourceB&quot;: &quot;Bone Ore&quot;, &quot;color&quot;: &quot;60D0FF&quot;,
+                   &quot;blurb&quot;: &quot;Fast warden fleets built from sunken elder technology: adaptive armour and their own current gates.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;3A6880&quot;, &quot;panel&quot;: &quot;4E86A2&quot;, &quot;dark&quot;: &quot;1A303C&quot; } },
+    &quot;lumen&quot;:     { &quot;title&quot;: &quot;The Leviathans&quot;, &quot;short&quot;: &quot;Leviathans&quot;, &quot;group&quot;: &quot;The Abyss&quot;, &quot;resourceA&quot;: &quot;Vent Crystal&quot;, &quot;resourceB&quot;: &quot;Bone Ore&quot;, &quot;color&quot;: &quot;FFFFFF&quot;,
+                   &quot;blurb&quot;: &quot;The oldest and most powerful: living giants with arc lances, regeneration and the world-ender. Very expensive.&quot;,
+                   &quot;shipStyle&quot;: { &quot;organic&quot;: true, &quot;hull&quot;: &quot;506070&quot;, &quot;panel&quot;: &quot;6A7C8E&quot;, &quot;dark&quot;: &quot;202830&quot;, &quot;glow&quot;: &quot;E0F8FF&quot; } },
+    &quot;thornkin&quot;:  { &quot;title&quot;: &quot;Anglerfolk&quot;, &quot;short&quot;: &quot;Anglers&quot;, &quot;group&quot;: &quot;The Abyss&quot;, &quot;resourceA&quot;: &quot;Vent Crystal&quot;, &quot;resourceB&quot;: &quot;Biolume&quot;, &quot;color&quot;: &quot;FF4A5A&quot;,
+                   &quot;blurb&quot;: &quot;No shields, but enormous living hulls that regenerate. Rending lures, phasing and current gates.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;3A1E24&quot;, &quot;panel&quot;: &quot;5A2A34&quot;, &quot;dark&quot;: &quot;1A0C10&quot;, &quot;glow&quot;: &quot;FF4A5A&quot; } },
+    &quot;corvane&quot;:   { &quot;title&quot;: &quot;Kelp Court&quot;, &quot;short&quot;: &quot;Kelp&quot;, &quot;group&quot;: &quot;The Abyss&quot;, &quot;resourceA&quot;: &quot;Vent Crystal&quot;, &quot;resourceB&quot;: &quot;Bone Ore&quot;, &quot;color&quot;: &quot;40E080&quot;,
+                   &quot;blurb&quot;: &quot;Ornate jade-and-silver warships, seahorse fighter swarms, ion cannons and pressure bombardment.&quot;,
+                   &quot;shipStyle&quot;: { &quot;hull&quot;: &quot;2E6A4A&quot;, &quot;panel&quot;: &quot;C8D0D8&quot;, &quot;dark&quot;: &quot;143020&quot; } },
+    &quot;kharast&quot;:   { &quot;title&quot;: &quot;Eel Horde&quot;, &quot;short&quot;: &quot;Eels&quot;, &quot;group&quot;: &quot;The Abyss&quot;, &quot;resourceA&quot;: &quot;Vent Crystal&quot;, &quot;resourceB&quot;: &quot;Bone Ore&quot;, &quot;color&quot;: &quot;FFE040&quot;,
+                   &quot;blurb&quot;: &quot;Tough, cheap and brutal: heavy shock cannons, jellymines, brute fighters and assault troops.&quot;,
+                   &quot;shipStyle&quot;: { &quot;form&quot;: &quot;NEEDLE&quot;, &quot;hull&quot;: &quot;3E4A2A&quot;, &quot;panel&quot;: &quot;566438&quot;, &quot;dark&quot;: &quot;1C2212&quot;, &quot;glow&quot;: &quot;FFE040&quot; } }
+  }
+}</code></pre></details>
+</article>
+<article class="card example" id="built-in">
+  <div class="meta">
+    <div><h3>The built-in theme</h3>
+    <p>The game's own setting: every faction, ship, weapon, ability and art style. It's the most complete example there is.</p></div>
+    <a class="btn btn-ghost" href="../downloads/default.json" download>Download default.json</a>
+  </div>
+  <p class="muted" style="margin-top:10px">Copy it as a template for a full theme. Before importing a copy, change its
+  <code>id</code> and <code>name</code>.</p>
+</article>
+
+</main>
+<footer class="site-footer"><div class="inner">
+  <span>© 2026 Convergence Themed. Contact: <a href="mailto:apps@swlr.net">apps@swlr.net</a></span>
+  <span><a href="../privacy.html">Privacy policy</a> · <a href="../themes/index.html">Make a theme</a></span>
+</div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

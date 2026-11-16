@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI prompt builder · Convergence Themed</title>
+<meta name="description" content="Copy ready-made prompts that get any AI assistant to write a Convergence Themed theme.">
+<meta property="og:title" content="AI prompt builder · Convergence Themed">
+<meta property="og:description" content="Copy ready-made prompts that get any AI assistant to write a Convergence Themed theme.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://esheesle.github.io/convergence-themes/themes/ai.html">
+<meta property="og:image" content="https://esheesle.github.io/convergence-themes/assets/icon-512.png">
+<meta name="theme-color" content="#05070f">
+<link rel="icon" type="image/png" href="../assets/icon-512.png">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="inner">
+  <a class="brand" href="../index.html"><img src="../assets/icon-512.png" alt="" width="32" height="32">Convergence Themed</a>
+  <nav class="site-nav" aria-label="Main"><a href="../index.html">Game</a><a href="../themes/index.html" aria-current="page">Themes</a><a href="../privacy.html">Privacy</a></nav>
+</div></header>
+<main id="main">
+<nav class="subnav" aria-label="Theme pages"><a href="index.html">Guide</a><a href="ai.html" aria-current="page">AI prompts</a><a href="examples.html">Examples</a><a href="reference.html">Reference</a><a href="format.html">File format</a></nav>
+
+<div class="page-head prose">
+<h1>Make a theme with an AI</h1>
+<p>Any capable AI chat assistant can write a theme for you: Claude, ChatGPT, Gemini, Copilot and so on.</p>
+<ol>
+<li>Download <a href="../downloads/THEME_REFERENCE.txt">THEME_REFERENCE.txt</a>. It lists every id the AI is allowed to use.</li>
+<li>Pick a task below. Leave <b>Include the rules block</b> ticked when you start a new chat.</li>
+<li>Replace every &lt;angle bracket&gt; with your own idea. You can type straight into the box.</li>
+<li>Copy the prompt into the AI chat and attach THEME_REFERENCE.txt.</li>
+<li>Save the AI's answer as a <code>.json</code> file and <a href="index.html#importing-your-theme">import it</a>.</li>
+</ol>
+<p class="muted">If your AI can't take attachments, paste in just the sections of THEME_REFERENCE.txt for the factions
+you're changing. Each faction's section is self-contained.</p>
+</div>
+<div class="builder">
+  <label for="task">What do you want the AI to do?</label>
+  <select id="task"></select>
+  <label style="font-weight:400"><input type="checkbox" id="rules"> Include the rules block (needed at the start of a new chat)</label>
+  <textarea id="out" spellcheck="false" aria-label="Prompt text"></textarea>
+  <div class="row">
+    <button class="btn btn-primary" id="copy" type="button">Copy prompt</button>
+    <button class="btn btn-ghost" id="reset" type="button">Reset</button>
+    <span class="status" id="status" role="status"></span>
+  </div>
+</div>
+<script type="application/json" id="prompt-data">{"rules": "You are helping me write a theme file for the Android/desktop strategy game \"Convergence Themed\".\nA theme is ONE JSON file that renames and re-skins the game. It cannot change gameplay.\nI have attached THEME_REFERENCE.txt, which lists every faction id, weapon key, ability key and unit id,\nwith the built-in names and a description of how each faction plays.\n\nSTRICT RULES\n1. Output a single JSON object in one ```json code block. Comments (//) are allowed. No other files.\n2. Top level fields: \"format\": \"convergence-theme\", \"id\" (lowercase-with-dashes), \"name\", \"author\",\n   \"description\", \"subtitle\" (optional tagline), \"factions\" (object), \"units\" (object).\n3. Only use faction ids, weapon keys, ability keys and unit ids that appear in THEME_REFERENCE.txt.\n   Never invent new ones. A faction's weapons/abilities may only use the keys listed for THAT faction.\n4. Anything I don't ask to change: leave it out. Missing entries fall back to the built-in theme.\n5. Faction fields: \"title\" (full name), \"short\" (1-2 words, used on buttons), \"group\" (region/menu heading;\n   factions with the same group are listed together), \"resourceA\" (mined from crystal moons by freighters),\n   \"resourceB\" (extracted from asteroid fields by mining stations), \"color\" (hex, shields and effects),\n   \"blurb\" (1-2 sentences), \"weapons\" {key: \"Name\"} or {key: {\"name\": \"...\", \"color\": \"RRGGBB\"}},\n   \"abilities\" {key: \"Name\"} or {key: {\"name\": \"...\", \"desc\": \"...\"}}, \"shipStyle\", \"stationStyle\".\n6. Unit entries: \"unit_id\": \"Name\" or {\"name\": \"...\", \"desc\": \"...\"}. Keep descriptions under ~20 words.\n7. Names and descriptions must stay TRUE TO GAMEPLAY. Each faction plays as its \"Play style\" says, and each\n   unit's role (scout, freighter, tier, flagship, station type) is fixed. A cloak is still invisibility, a\n   tractor beam still holds a ship, tier 8 is still the single flagship, a mining station still mines resourceB.\n   Rename freely, but don't describe abilities a unit doesn't have.\n8. Placeholders work ONLY inside \"desc\" and \"blurb\" text, never in names: {resourceA} {resourceB} {faction}\n   (short name) {count} {duration} {spawn} (launched fighter's name) {advancedShipyard}.\n   If you leave an ability's \"desc\" out, the game writes an accurate one automatically. Prefer that.\n9. Colours are \"RRGGBB\" or \"RRGGBBAA\" hex strings.\n10. shipStyle fields (all optional, they merge with the built-in style):\n   form / capitalForm (capitalForm = tiers 5-8): WEDGE DART NEEDLE SPINDLE BLADE CRESCENT SLAB ORB SHARD SEED\n     MANTA HAMMER TRIDENT ARROW CLUSTER\n   wings: NONE SWEPT FORWARD DELTA STRAIGHT CANARD FINS CLAWS SPINES RING\n   engines: SINGLE TWIN QUAD BANK RING      plating: NONE PANELS GREEBLES RIBS FACETS\n   pods: 0-2   width: 0.4-2.5   organic / windows / core: true/false   seed: integer\n   colours: hull panel dark light engine glow rim\n   stationStyle: shape (ROUND ANGULAR ORGANIC BLOCKY CRYSTAL), hull panel dark light glow, seed.\n   Keep hull colours mid-to-light, or set \"rim\" to a lighter colour, so ships stay visible on a black\n   background. Make each faction's colours clearly different from its neighbours.\n11. Give every name and every faction an ORIGINAL identity. Don't use names, ships or logos from existing\n   films, TV shows, games or books.\n12. Before answering, check: valid JSON, every key exists in THEME_REFERENCE.txt, no placeholders in names,\n   each faction's \"short\" is unique.", "tasks": [{"label": "A. A complete theme from an idea (all 17 factions)", "rules": true, "text": "Write a complete theme. Concept: <e.g. \"rival medieval kingdoms whose castles fly between stars\">.\nTheme name: \"<name>\". id: \"<my-theme-id>\". Author: \"<your name>\".\n\nFor ALL 17 factions write: title, short, group (choose 3 region names that fit the concept, keeping the same\nfaction-to-region split as THEME_REFERENCE.txt), resourceA, resourceB, color, blurb (matching the play style),\na name for every weapon key and every ability key, a shipStyle and a stationStyle.\nThen name EVERY unit in THEME_REFERENCE.txt and give each warship (t1-t8, t2b, t1_launched) a short desc.\nStations and utility ships need a name only.\nKeep the names consistent within each faction (e.g. one naming pattern per faction)."}, {"label": "B. Built in stages, step 1 of 4: factions", "rules": true, "text": "Step 1 of 4. Concept: <idea>. Theme name \"<name>\", id \"<my-theme-id>\", author \"<you>\".\nWrite ONLY the top-level fields and the \"factions\" object for all 17 factions (title, short, group,\nresourceA, resourceB, color, blurb, weapons, abilities, shipStyle, stationStyle). No \"units\" yet."}, {"label": "B. Step 2 of 4: region 1 ships", "rules": false, "text": "Step 2 of 4. Now write ONLY a \"units\" object for the factions in region 1\n(concord, accretion, shroud, vardek, saurak). Name every unit; give warships a short desc."}, {"label": "B. Step 3 of 4: region 2 ships", "rules": false, "text": "Step 3 of 4. Same for region 2 (helios, luminar, gloam, satrapy, myriad)."}, {"label": "B. Step 4 of 4: region 3 ships and combine", "rules": false, "text": "Step 4 of 4. Same for region 3 (seren, coalition, starwatch, lumen, thornkin, corvane, kharast).\nThen combine steps 1-4 into ONE complete JSON file with a single \"units\" object, and output the whole file."}, {"label": "C. Rework a single faction", "rules": true, "text": "Rework only the faction \"<faction id, e.g. vardek>\" as <idea, e.g. \"space pirates who ride comets\">.\nTheme name \"<name>\", id \"<my-theme-id>\".\nChange its title, short, group, resources, color, blurb, every weapon and ability name, shipStyle and\nstationStyle, and name every one of its units (short desc for warships). Leave all other factions out."}, {"label": "D. Rename only (keep the look)", "rules": true, "text": "Rename <\"everything\" or a list of faction ids> in the style of <idea, e.g. \"Roman legions\" / \"insects\" /\n\"corporate brands of a dystopian future\">. Theme name \"<name>\", id \"<my-theme-id>\".\nChange names, resources and blurbs only. Do not include shipStyle, stationStyle or color."}, {"label": "E. New colours and ship shapes only", "rules": true, "text": "Restyle <\"all factions\" or a list of ids> with a <e.g. \"neon synthwave\" / \"rusty industrial\" /\n\"pastel candy\"> look. Theme name \"<name>\", id \"<my-theme-id>\".\nOutput only \"color\", \"shipStyle\" and \"stationStyle\" for each faction. No names or descriptions.\nPick forms, wings, plating and colours that suit each faction's play style."}, {"label": "F. Draw one ship by hand", "rules": true, "text": "Draw unit \"<unit id, e.g. concord_t1>\" as explicit art: <describe it, e.g. \"a slim arrowhead fighter with\ntwo engine pods and forward-swept wings\">. Output a theme containing only that unit.\n\nExplicit art format, inside the unit's \"art\" object:\n- \"w\", \"h\": box size (e.g. 100 x 60). The design is centred on (0,0). +x is the BOW (front), +y is port (left).\n- \"palette\": {\"hull\": \"RRGGBB\", ...}; use colours as \"$hull\". \"rim\": outline colour.\n- \"parts\": shapes drawn in order (back to front). \"accent\": shapes tinted with the player's team colour;\n  include at least one. \"engines\": [[colour, x, y, radius, pulse 0/1], ...].\n- Shapes are arrays: [shape, colour, ...numbers]. \"shade\" 0-1 = how much it's lit toward the middle;\n  \"outline\" = edge width (0 = none). Shapes ending in M also draw a mirror copy across y = 0.\n    poly / polyM:       shade, outline, x1, y1, x2, y2, x3, y3, ...\n    ellipse / ellipseM: shade, outline, cx, cy, rx, ry, rotationDeg\n    circle:             shade, outline, cx, cy, r\n    rect / rectM:       shade, outline, x0, y0, x1, y1\n    ngon:               shade, outline, cx, cy, r, sides, rotationDeg\n    spike / spikeM:     shade, outline, x, y, angleDeg, length, baseWidth, curveDeg\n    teardrop:           shade, outline, sternX, bowX, halfWidth, bluntness, cy\n    line / lineM:       width, x1, y1, x2, y2\n    glow / glowM:       cx, cy, r\n    ring:               width, cx, cy, rx, ry\n    windows:            x1, y1, x2, y2, count, size\nKeep every point inside the box. Build the ship from about 8-20 shapes."}, {"label": "G. Fix problems the game reported", "rules": true, "text": "The game reported these problems with my theme. Fix them and output the whole corrected file.\nProblems:\n<paste the list from the Themes screen>\n\nTheme:\n<paste your theme file>"}, {"label": "H. Change an existing theme", "rules": true, "text": "Here is my theme. <Describe the change, e.g. \"make the Accord's names sound more nautical\" /\n\"give the Sharks a darker red palette\" / \"add descriptions to all the Crab ships\">.\nKeep everything else the same, keep the same \"id\", and output the whole file.\n\n<paste your theme file>"}]}</script>
+<noscript><p>The prompt builder needs JavaScript.</p></noscript>
+<div class="prose"><h2 id="getting-good-results">Getting good results</h2>
+<ul>
+<li><strong>Give the AI a strong concept.</strong> "Feudal space houses, each named after a gemstone" works better than "make it cooler".</li>
+<li><strong>Ask for a naming pattern per faction.</strong> For example "Clan ships are named after storms" or "the Accord uses virtues". It keeps names consistent.</li>
+<li><strong>Keep the <code>id</code> the same</strong> when you ask for changes. Importing the new file then replaces the old version instead of adding a copy.</li>
+<li><strong>Look out for invented ids.</strong> If the Themes screen says <code>unknown unit "..."</code> or <code>unknown faction "..."</code>, the AI made up an id. Use the Fix problems prompt.</li>
+<li><strong>Check the colours in the game.</strong> AIs sometimes pick hull colours too dark to see. Ask for lighter hulls, or a <code>rim</code> colour.</li>
+<li><strong>Stay original.</strong> Themes you share with others shouldn't use names or designs from existing franchises.</li>
+</ul></div>
+
+</main>
+<footer class="site-footer"><div class="inner">
+  <span>© 2026 Convergence Themed. Contact: <a href="mailto:apps@swlr.net">apps@swlr.net</a></span>
+  <span><a href="../privacy.html">Privacy policy</a> · <a href="../themes/index.html">Make a theme</a></span>
+</div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
